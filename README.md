@@ -5,3 +5,6 @@ This is a school project.  Amaka and Karen will be collaborating on it in June 2
 
 There is no licence included so that means no one else is allow to use our code.  
 (But that's okay, we're just students, so why would you want to anyway, right?)
+
+Monday, June 1, 2020
+Editing the Readme file, learning how to use Github, and to make and use branches.
