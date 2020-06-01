@@ -1,0 +1,26 @@
+html {
+  background-color: rgb(69, 39, 28);
+}
+body {
+  background-color: rgb(229, 143, 182);
+  margin-left: 7vw;
+  position: relative;
+  margin-top: 10px;
+  height: 90vh;
+}
+main,
+footer {
+  margin-left: 3px;
+  background-color: rgb(249, 235, 210);
+  position: relative;
+  margin-top: -10px;
+  padding: 12px;
+}
+#logo {
+  width: 14vw;
+}
+#map {
+  height: 20vh;
+  width: 35vw;
+  border: 2px solid rgb(62, 95, 126);
+}
