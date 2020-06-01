@@ -1,7 +1,8 @@
 # AmaKaren_Books
+
 A web app that connects people who love books with other people who love books.
 
-This is a school project.  Amaka and Karen will be collaborating on it in June 2020.
+This is a school project. Amaka and Karen will be collaborating on it in June 2020.
 
 There is no licence included so that means no one else is allow to use our code.  
 (But that's okay, we're just students, so why would you want to anyway, right?)
@@ -9,3 +10,7 @@ There is no licence included so that means no one else is allow to use our code.
 Monday, June 1, 2020
 
 Editing the Readme file, learning how to use Github, and to make and use branches.
+-this edit was done on the remote repo.
+
+I am making an edit on my local machine and will add, commit and push it to the remote repo.
+9:20 am
