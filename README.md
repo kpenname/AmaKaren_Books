@@ -11,7 +11,7 @@ Monday, June 1, 2020
 
 Amaka, try these instructions for getting this repo on your machine.
 
-1.  Click on the green button "Clone or Download." Copy that address/url
+1.  On the main repo page, click on the green button "Clone or Download." Copy that address/url
 
 2.  In VS code, create a folder for the project.
 
