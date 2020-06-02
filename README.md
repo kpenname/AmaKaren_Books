@@ -29,6 +29,10 @@ Amaka, try these instructions for getting this repo on your machine.
 8.  When you create a file, folder, or edit anything, you have to do three things.
     (Well four because you have to save in VScode first)
 
-        a. git add theNameOfTheFile.changed   (this tells git what to add)
+        a. git add theNameOfTheFile.changed  or git add . (will add all changes at the same time)
         b. git commit -m "description of the commit to appear in the repo"  (this saves the changes)
         c. git push  (this sends the saved changes to github)
+
+9.  To get the changes from the remote repo onto your machine, use git pull
+
+10. To check the status of your code vs. the remote code, use git status
