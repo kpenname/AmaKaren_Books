@@ -3,7 +3,7 @@ let dbConn = {
   user: "root",
   password: "",
   connectionLimit: 10,
-  database: "amaKaren_books",
+  database: "amakaren_books",
 };
 
 module.exports = dbConn;

@@ -22,5 +22,6 @@ app.get("/headers", auth, async (req, res) => {
 });
 
 app.listen(port, () => {
+  dbLayer.init();
   console.log(`listening on port: ${port}`);
 });
