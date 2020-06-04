@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const axios = require("axios");
 const cors = require("cors");
+const { Sequelize } = require("sequelize");
 const cookieParser = require("cookie-parser");
 const app = express();
 const port = 9000;

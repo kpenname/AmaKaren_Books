@@ -4,7 +4,7 @@ mapboxgl.accessToken =
 let map = null;
 let position = {};
 
-/*   loading the window   */
+/****** LOADING THE WINDOW  *****/
 
 window.addEventListener("load", () => {
   map = new mapboxgl.Map({
@@ -13,25 +13,6 @@ window.addEventListener("load", () => {
     center: [-75.3640719, 46.556399],
     zoom: 5.5,
   });
-
-  /* creating the markers that will eventually be put on the map*/
-
-  // createDivs = () => {
-  //   mark = document.createElement("div");
-  //   bookImage = 'url("../img/rex.png")';
-  //   mark.style.backgroundImage = bookImage;
-  //   mark.style.backgroundSize = "contain";
-  //   mark.style.backgroundRepeat = "no-repeat";
-  //   mark.style.height = "40px";
-  //   mark.style.width = "40px";
-  //   mark.style.cursor = "pointer";
-  //   mark.style.borderRadius = "50%";
-
-  //   let dino = new mapboxgl.Marker(mark).setLngLat(coordinates[0]).addTo(map);
-  //   markers.push(dino);
-
-  //   coordinates.splice(index, 1);
-  // };
 }); // ************* END OF WINDOW LOAD **********
 
 /*SETTING INITIAL LOCATION TAG*/

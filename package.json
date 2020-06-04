@@ -1,7 +1,7 @@
 {
-  "name": "express-first",
+  "name": "amakaren_books",
   "version": "1.0.0",
-  "description": "first express app",
+  "description": "connecting book lovers",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/stephenson-heritage/express-first.git"
+    "url": "git+https://github.com/kpenname/AmaKaren_Books.git"
   },
   "author": "",
   "license": "ISC",
@@ -20,14 +20,10 @@
     "express": "^4.17.1",
     "hbs": "^4.1.1",
     "mariadb": "^2.3.1",
-    "random-decimal": "^1.0.2",
-    "clamp": "^1.0.1",
-    "max-safe-int": "^1.0.0",
-    "random-integral": "^1.0.3",
-    "to-integer": "^1.0.1",
-    "tofixed": "^1.0.0"
+    "sequelize": "^5.21.11"
   },
   "devDependencies": {
-    "nodemon": "^2.0.3"
+    "nodemon": "^2.0.3",
+    "sequelize-cli": "^5.5.1"
   }
 }
