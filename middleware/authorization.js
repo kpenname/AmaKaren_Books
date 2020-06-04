@@ -1,3 +1,9 @@
+// do we use middleware to get info from the db?
+// the authorization is different from just getting
+// a list of info
+
+// this code is the same as the headers_example from class
+
 const User = require("../model/User");
 
 module.exports = async (req, res, next) => {
