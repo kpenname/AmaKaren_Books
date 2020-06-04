@@ -1,27 +1,24 @@
 const express = require("express");
 const path = require("path");
-const axios = require("axios");
-const cors = require("cors");
-const { Sequelize } = require("sequelize");
+const dbLayer = require("./config/database");
 const cookieParser = require("cookie-parser");
+const auth = require("./middleware/authorization.js");
 const app = express();
 const port = 9000;
-app.use(cors());
+
+const User = require("./Model/User");
+const Book = require("./Model/Book");
+const BookReview = require("./Model/BookReview");
 
 app.use("/", express.static(path.join(__dirname, "public")));
 app.use(cookieParser());
 app.use(express.json());
 
-/** getting location data from the user's ip or from keycdn.com */
-app.get("/geo/", async (req, res) => {
-  let ip = req.ip;
-
-  if (req.ip === "::1" || req.ip === "::ffff:127.0.0.1") {
-    ip = "24.212.248.248";
+app.get("/headers", auth, async (req, res) => {
+  if (req.auth.auth) {
+    res.json({ user: req.auth.user });
   }
-
-  let geocode = await axios.get("https://tools.keycdn.com/geo.json?host=" + ip);
-  res.json(geocode.data.data.geo);
+  res.json({ user: null });
 });
 
 app.listen(port, () => {

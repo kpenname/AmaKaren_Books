@@ -8,6 +8,9 @@ body {
   margin-top: 10px;
   height: 90vh;
 }
+main {
+  height: 90vh;
+}
 main,
 footer {
   margin-left: 3px;
@@ -22,5 +25,9 @@ footer {
 #map {
   height: 20vh;
   width: 35vw;
+  height: 35vw;
   border: 2px solid rgb(62, 95, 126);
+  position: fixed;
+  right: 20px;
+  top: 20px;
 }
