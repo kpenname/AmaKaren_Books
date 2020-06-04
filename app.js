@@ -17,8 +17,9 @@ app.use(express.json());
 app.get("/headers", auth, async (req, res) => {
   if (req.auth.auth) {
     res.json({ user: req.auth.user });
+  } else {
+    res.json({ user: null });
   }
-  res.json({ user: null });
 });
 
 app.listen(port, () => {
