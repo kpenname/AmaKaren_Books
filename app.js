@@ -18,6 +18,11 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+app.get("/", function (req, res) {
+  console.log("Cookies: ", req.cookies);
+  console.log("Signed Cookies: ", req.signedCookies);
+});
+
 app.get("/geocoding", async (req, res) => {
   let postcode = req.param.postcode;
   let urlstring =
