@@ -1,5 +1,3 @@
-// this is copied from the headers_example from class
-
 const db = require("mariadb");
 const dbConn = require("./dbConnection");
 

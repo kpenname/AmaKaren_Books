@@ -1,6 +1,3 @@
-// the sql statement can be changed depending on our needs
-// but for now, if we can just retrieve the data, that will be good.
-
 const db = require("../config/database");
 
 module.exports = class {
@@ -11,9 +8,9 @@ module.exports = class {
       [bookId]
     );
     if (rows.length > 0) {
-      return { user: rows[0] };
+      return { review: rows[0] };
     }
 
-    return { user: null };
+    return { review: null };
   }
 };

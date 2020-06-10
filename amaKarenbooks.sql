@@ -2,7 +2,7 @@
 -- Host:                         127.0.0.1
 -- Server version:               10.4.6-MariaDB - mariadb.org binary distribution
 -- Server OS:                    Win64
--- HeidiSQL Version:             11.0.0.5994
+-- HeidiSQL Version:             11.0.0.5995
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -34,7 +34,6 @@ CREATE TABLE IF NOT EXISTS `bookreview` (
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table amakaren_books.bookreview: ~5 rows (approximately)
-DELETE FROM `bookreview`;
 /*!40000 ALTER TABLE `bookreview` DISABLE KEYS */;
 INSERT INTO `bookreview` (`bookReviewId`, `userId`, `bookId`, `reviewText`, `recommended`, `rating`) VALUES
 	(8, 5, 8, 'The Hunger Games is a compelling novel focusing on life in an authoritarian society in which young people must compete to the death in the annual Hunger Games.', 'Yes', '5'),
@@ -61,7 +60,6 @@ CREATE TABLE IF NOT EXISTS `books` (
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table amakaren_books.books: ~24 rows (approximately)
-DELETE FROM `books`;
 /*!40000 ALTER TABLE `books` DISABLE KEYS */;
 INSERT INTO `books` (`bookId`, `userId`, `title`, `author`, `genre`, `yearPub`, `pages`, `available`) VALUES
 	(5, 2, 'Pride and Prejudice', 'Jane Austen ', 'Drama', 1994, 261, 'Yes'),
@@ -90,32 +88,49 @@ INSERT INTO `books` (`bookId`, `userId`, `title`, `author`, `genre`, `yearPub`, 
 	(29, 10, 'The Stranger', 'Albert Camus ', 'Drama', 2003, 167, 'Yes');
 /*!40000 ALTER TABLE `books` ENABLE KEYS */;
 
+-- Dumping structure for table amakaren_books.message
+DROP TABLE IF EXISTS `message`;
+CREATE TABLE IF NOT EXISTS `message` (
+  `messageId` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `message` varchar(255) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `dateSent` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`messageId`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+
+-- Dumping data for table amakaren_books.message: ~3 rows (approximately)
+/*!40000 ALTER TABLE `message` DISABLE KEYS */;
+INSERT INTO `message` (`messageId`, `message`, `email`, `dateSent`) VALUES
+	(1, 'I really love this site!', 'kiki@mail.com', '2020-06-08 17:01:49'),
+	(8, 'Great', 'kiki@mail.com', '2020-06-08 17:52:35'),
+	(9, 'I think this is really great!', 'mailer@mail.com', '2020-06-08 20:43:55');
+/*!40000 ALTER TABLE `message` ENABLE KEYS */;
+
 -- Dumping structure for table amakaren_books.users
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `userId` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `firstName` varchar(50) NOT NULL,
-  `lastName` varchar(50) NOT NULL,
-  `userName` varchar(50) NOT NULL,
-  `passWord` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `phone` int(11) NOT NULL,
-  `address` varchar(128) NOT NULL DEFAULT '',
-  `City` varchar(25) NOT NULL,
-  `province` set('QC','ON','AB','MN','BC','NB','SK','PE','NS','NL') NOT NULL,
-  `postCode` varchar(25) NOT NULL,
+  `firstName` varchar(50) DEFAULT NULL,
+  `lastName` varchar(50) DEFAULT NULL,
+  `userName` varchar(50) DEFAULT NULL,
+  `passWord` varchar(50) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `phone` int(11) DEFAULT NULL,
+  `address` varchar(128) DEFAULT '',
+  `City` varchar(25) DEFAULT NULL,
+  `province` set('QC','ON','AB','MN','BC','NB','SK','PE','NS','NL') DEFAULT NULL,
+  `postCode` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table amakaren_books.users: ~14 rows (approximately)
-DELETE FROM `users`;
+-- Dumping data for table amakaren_books.users: ~22 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`userId`, `firstName`, `lastName`, `userName`, `passWord`, `email`, `phone`, `address`, `City`, `province`, `postCode`) VALUES
 	(2, 'Amy', 'lewis', 'alewis', '1234', 'amy@gmail.com', 2522, '397 Blvd Cite des Jeunes', 'Gatineau', 'QC', 'J8Y6L4'),
 	(3, 'Peter ', 'Rosato', 'prosato', 'abcd', 'dakota.spor@yahoo.com', 3522, '141 Boulevard du Mont bleu', 'Gatineau', 'QC', 'J8Z1K2'),
 	(4, 'Brianna', 'Hall', 'bhall', '1234', 'b.hall@randatmail.com', 2144, '9 Rue Talbot', 'Gatineau', 'QC', 'J8Z1LB'),
 	(5, 'Adele', 'Rogers', 'arogers', 'abcd', 'a.rogers@randatmail.com', 2355, '63 Rue Lemieux', 'Gatineau', 'QC', 'J8Z1G7'),
-	(6, 'Derek', 'Gray', 'dgray', '1234', 'd.gray@randatmail.com', 5477, '76 Rue Pelletier', 'Gatineau', 'QC', 'J871C5'),
+	(6, 'Derek', 'Gray', 'dgray', '1234', 'd.gray@randatmail.com', 5477, '76 Rue Pelletier', 'Gatineau', 'QC', 'J8L1C5'),
 	(7, 'Eric', 'Morgan', 'emorgan', 'abcd', 'e.morgan@randatmail.com', 3554, '369 Boulevard Riel', 'Gatineau', 'QC', 'J8Z1B3'),
 	(8, 'Annabella', 'Henderson', 'ahenderson', '1234', 'a.henderson@randatmail.com', 3223, '320 Rue Francois de Levis', 'Gatineau', 'QC', 'J8Z1A4'),
 	(9, 'Catherine', 'Farrell', 'cfarrell', 'abcd', 'c.farrell@randatmail.com', 5465, '71 Rue d\'Orsonnens', 'Gatineau', 'QC', 'J8Y6H8'),
@@ -124,8 +139,25 @@ INSERT INTO `users` (`userId`, `firstName`, `lastName`, `userName`, `passWord`, 
 	(12, 'Michael', 'Nelson', 'mnelson', '1234', 'm.nelson@randatmail.com', 8497, '145 Rue Jolicoeur', 'Gatineau', 'QC', 'J8Z1C8'),
 	(13, 'Dale', 'Mason', 'dmason', 'abcd', 'd.mason@randatmail.com', 9954, '37 Rue Bernier', 'Gatineau', 'QC', 'J8Z1E7'),
 	(14, 'Robert', 'Higgins', 'rhiggins', '1234', 'r.higgins@randatmail.com', 3259, '35 Rue Hinchey', 'Gatineau', 'QC', 'J8Z1H1'),
-	(15, 'Paul', 'Brown', 'pbrown', 'abcd', 'p.brown@randatmail.com', 5412, '86 Rue Boucher', 'Gatineau', 'QC', 'J8Y6G6');
+	(15, 'Paul', 'Brown', 'pbrown', 'abcd', 'p.brown@randatmail.com', 5412, '86 Rue Boucher', 'Gatineau', 'QC', 'J8Y6G6'),
+	(27, NULL, NULL, 'samIam', '456', NULL, NULL, '', NULL, NULL, NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
+
+-- Dumping structure for table amakaren_books.wishlist
+DROP TABLE IF EXISTS `wishlist`;
+CREATE TABLE IF NOT EXISTS `wishlist` (
+  `wishlistId` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `userId` int(10) unsigned NOT NULL DEFAULT 0,
+  `title` varchar(100) DEFAULT '0',
+  `author` varchar(100) DEFAULT '0',
+  PRIMARY KEY (`wishlistId`),
+  KEY `wishlist_userId` (`userId`),
+  CONSTRAINT `wishlist_userId` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Dumping data for table amakaren_books.wishlist: ~0 rows (approximately)
+/*!40000 ALTER TABLE `wishlist` DISABLE KEYS */;
+/*!40000 ALTER TABLE `wishlist` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
