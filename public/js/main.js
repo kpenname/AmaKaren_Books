@@ -33,58 +33,9 @@ window.addEventListener("load", async (e) => {
   let showMap = document.getElementById("showMap");
   showMap.addEventListener("click", displayMap);
   showMap.style.cursor = "pointer";
-
-  checkCookie();
 });
 
 // ************ end of window load *************//
-
-function setCookie(cname, cvalue, exdays) {
-  var d = new Date();
-  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-  var expires = "expires=" + d.toGMTString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-
-  // These three cookie methods work when used as they were online.  But I don't want
-  // to get the username of the user.  I want the userId that is
-  // created when they are entered into the database.
-  // This is not information that the user has access to.
-
-  // note for myself... can I access the userId by an sql statement?
-  // select userId where username = ?
-  // more work to be done ! :)
-}
-
-function getCookie(cname) {
-  var name = cname + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(";");
-  for (var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == " ") {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
-
-function checkCookie() {
-  var user = getCookie("username");
-  let welcome = document.getElementById("welcome");
-
-  if (user != "") {
-    welcome.innerHTML += user;
-  } else {
-    welcome.style.visibility = "hidden";
-    welcome.style.height = "0";
-    // user = prompt("Please enter your name:", "");
-    // if (user != "" && user != null) {
-    // setCookie("username", user, 30);
-  }
-}
 
 function showMsgForm() {
   let msg = document.getElementById("msg");

@@ -18,18 +18,6 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// var con = mysql.createConnection({
-//   host: "localhost",
-//   user: "root",
-//   password: "",
-//   database: "amakaren_books",
-// });
-
-// con.connect(function (err) {
-//   if (err) throw err;
-//   console.log("Connected!");
-// });
-
 app.get("/geocoding", async (req, res) => {
   let postcode = req.param.postcode;
   let urlstring =
@@ -52,17 +40,6 @@ app.post("/message/", async (req, res) => {
     if (err) throw err;
     return res.send(req.body.query);
   });
-});
-
-app.post("/addUser/", async (req, res) => {
-  let result = await User.addUser(
-    req.body.txtAddUsername,
-    req.body.txtAddPassword
-  );
-
-  let cookie = await Cookie.setCookie("userId", result.userId, 30);
-  console.log(result.userId);
-  res.json(cookie);
 });
 
 app.post("/updateUser/", async (req, res) => {
