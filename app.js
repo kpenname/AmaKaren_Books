@@ -2,26 +2,35 @@ const express = require("express");
 const path = require("path");
 const dbLayer = require("./config/database");
 const geocoder = require("node-geocoder-ca").Geocoder;
-const app = express();
-const port = 9000;
 const axios = require("axios");
-const cors = require("cors");
 const mysql = require("mysql");
 const bodyParser = require("body-parser");
 const User = require("./Model/User");
-const Cookie = require("./Model/Cookie");
+const Message = require("./Model/Message");
 const cookieParser = require("cookie-parser");
+const pageRoute = require("./routes/pageRoute");
+const hbs = require("hbs");
 
-app.use(cors());
-app.use("/", express.static(path.join(__dirname, "public")));
+const app = express();
+const port = 9000;
+
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(bodyParser.urlencoded({ extended: true })); // urlencoded just means that the information in the "body" (page)
+// is sent back as a string to the url
+
 app.use(cookieParser());
 
-app.get("/", function (req, res) {
-  console.log("Cookies: ", req.cookies);
-  console.log("Signed Cookies: ", req.signedCookies);
-});
+hbs.registerPartials(path.join(__dirname, "/Views/partials"));
+// hbs files that are parts of the main page
+// these are called from pageLayout by using {{> partialName}} and then hbs looks in
+// the Views / partials folder for that name
+
+app.get("/", pageRoute);
+
+app.use("/other", express.static(path.join(__dirname, "public")));
+// this isn't a folder called other.
+//It is just a way to access other resources by calling the endpoint "/other/something"
 
 app.get("/geocoding", async (req, res) => {
   let postcode = req.param.postcode;
@@ -32,23 +41,20 @@ app.get("/geocoding", async (req, res) => {
 });
 
 app.get("/getUsers/", async (req, res) => {
-  let users = await User.getAllUserInfo();
+  // this endpoint now calls the user model
+  let users = await User.getAllUserInfo(); // User is like an object with methods
+  // I am calling getAllUserInfo from the model.  That is where the sql is.
   res.json(users);
 });
 
 app.post("/message/", async (req, res) => {
-  let sql = "INSERT INTO message (message, email) VALUES (?,?)";
-  con.query(sql, [req.body.msgText, req.body.emailText], function (
-    err,
-    result
-  ) {
-    if (err) throw err;
-    return res.send(req.body.query);
-  });
+  let message = await Message.sendMessage();
+  res.json(message);
 });
 
 app.post("/updateUser/", async (req, res) => {
-  console.log(userId); //null
+  //can't do this until I have access to the user's information
+  // then this will be moved to the User model
   let result = await User.updateUser(
     req.body.firstNameTxt,
     req.body.lastNameTxt,
