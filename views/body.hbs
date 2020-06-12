@@ -1,0 +1,17 @@
+<body>    
+    {{> header}}
+    {{> login}}
+    {{#if user.auth}}
+        {{> menu}}
+    {{/if}}
+    {{#with page}}
+    {{page.data.pageKey}} <!-- hoping that the partial name matches with the db pageKey names and that it works here-->
+    {{/with}}
+    {{> footer}}
+</body>
+
+
+
+
+
+

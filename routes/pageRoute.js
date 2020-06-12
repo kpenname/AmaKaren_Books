@@ -10,18 +10,19 @@ router.all("/:key", async (req, res) => {
 });
 
 async function getPageWithDefault(req, res) {
+  console.log(req.params.key);
   if (req.params.key === undefined) {
     req.params.key = "home";
   }
   let page = await pageModel.getPage(req.params.key);
   let menu = await pageModel.getMenu();
 
-  console.log(req.user);
+  //console.log(req.user);
   if (page[0] !== undefined) {
-    res.render(page[0].pageKey, {
-      // this is supposed to render the partial with the same name as pageKey
-      page: page[0],
+    //console.log(req.params.key);
+    res.render("body", {
       menu: menu,
+      page: page[0],
       user: req.user,
     });
   } else {
