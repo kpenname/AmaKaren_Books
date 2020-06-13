@@ -2,27 +2,78 @@ html {
   background-color: rgb(69, 39, 28);
 }
 body {
-  background-color: white; /*rgb(229, 143, 182); */
-  margin-left: 7vw;
+  background-color: rgb(249, 235, 210);
+  margin-left: 8vw;
   position: relative;
   margin-top: 10px;
-  height: 90vh;
+  padding: 12px;
+  height: 98vh;
+}
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+header > h3 {
+  justify-self: center;
+  text-align: center;
+  color: rgb(69, 39, 28);
+  font-size: 18pt;
+  padding-right: 12px;
+}
+#logo {
+  width: 16vw;
+  padding-left: 12px;
+}
+#flexbox {
+  display: flex;
+  flex-direction: row;
+}
+#aside {
+  flex: 1;
+}
+#main-page {
+  flex: 3;
+}
+
+nav {
+  position: relative;
+  float: left;
+}
+ul {
+  list-style: none;
+}
+nav li {
+  padding-bottom: 12px;
+}
+nav a {
+  text-decoration: none;
+  color: rgb(69, 39, 28);
 }
 main {
-  height: 90vh;
+  height: 98vh;
+  margin-top: -10px;
 }
 main,
 footer {
-  margin-left: 3px;
+  margin-left: 12px;
   background-color: rgb(249, 235, 210);
   position: relative;
-  margin-top: -10px;
   padding: 12px;
 }
-
-#logo {
-  width: 14vw;
+footer {
+  position: absolute;
+  bottom: 12px;
 }
+
+#home-page {
+  position: relative;
+  border: 1px solid rgb(69, 39, 28);
+  box-shadow: 4px 5px rgb(69, 39, 28);
+  border-radius: 3px;
+}
+
 div#div_map {
   width: 100%;
   height: 70vh;
@@ -58,28 +109,12 @@ h2 {
   font-size: 20px;
 }
 
-.form-header {
-  width: 100%;
-  max-width: 400px;
-}
-form {
-  width: 100%;
-  width: 100%;
-  max-width: 400px;
-  padding: 20px;
-  background: #f8f8f8;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-color: rgba(0, 0, 0, 0.05) rgba(0, 0, 0, 0.08) rgba(0, 0, 0, 0.1);
-  border-radius: 3px;
-  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.05);
-}
 label {
   display: block;
   padding-bottom: 3px;
   font-size: 12px;
   font-weight: bold;
-  color: #555;
-  text-transform: uppercase;
+  color: rgb(69, 39, 28);
 }
 .input {
   width: 100%;
@@ -97,78 +132,31 @@ label {
 .form-field {
   margin-bottom: 10px;
 }
-.error,
-.errors-list {
-  font-size: 14px;
-  color: #c00;
-}
-.errors-list {
-  margin: 0 0 1.5em;
-  padding: 0 0 0 15px;
-}
-.form-field-invalid .input {
-  border-color: #c00;
-}
-.form-actions {
-  margin-top: 20px;
-}
-.btn {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  background: #24b47e;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-width: 1px 1px 3px;
-  border-radius: 3px;
-  font: inherit;
-  color: #fff;
-  cursor: pointer;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3), 0 1px 1px rgba(0, 0, 0, 0.2);
-}
-.btn:hover,
-.btn:focus {
-  outline: none;
-  background: #2aa172;
-}
-.btn:active {
-  transform: translateY(1px);
-}
-.flash {
-  padding: 15px 20px;
-  border: 1px solid;
-  border-radius: 3px;
-}
-.flash-success {
-  background-color: #d4edda;
-  border-color: #c3e6cb;
-  color: #155724;
-}
-.login-form {
-  width: 300px;
-  margin: 0 auto;
-  font-family: Tahoma, Geneva, sans-serif;
-}
-.login-form h1 {
-  text-align: center;
-  color: #4d4d4d;
-  font-size: 24px;
-  padding: 20px 0 20px 0;
-}
-.login-form input[type="password"],
-.login-form input[type="text"] {
-  width: 100%;
-  padding: 15px;
+.form input[type="password"],
+.form input[type="text"] {
+  width: 100px;
+  padding: 5px;
   border: 1px solid #dddddd;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
   box-sizing: border-box;
 }
-.login-form input[type="submit"] {
-  width: 100%;
-  padding: 15px;
-  background-color: #535b63;
-  border: 0;
-  box-sizing: border-box;
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  margin: 5px;
+  padding: 7px;
+  background-color: rgb(249, 235, 210);
+  border: 1px solid rgb(69, 39, 28);
+  border-radius: 3px;
+  box-shadow: 0 4px 5px rgb(69, 39, 28);
+}
+form > button {
+  width: 150px;
+  padding: 5px;
+  background-color: rgb(62, 95, 126);
   cursor: pointer;
   font-weight: bold;
-  color: #ffffff;
+  color: rgb(249, 235, 210);
 }

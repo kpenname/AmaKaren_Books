@@ -1,28 +1,28 @@
 const router = require("express").Router();
-const pageModel = require("../model/pageModel");
+const pageModel = require("../Model/PageModel");
 
 router.all("/", async (req, res) => {
+  console.log(req.params.key + " in pageRoute line 5");
   getPageWithDefault(req, res);
 });
 
 router.all("/:key", async (req, res) => {
+  console.log(req.params.key + "in step 2");
   getPageWithDefault(req, res);
 });
 
 async function getPageWithDefault(req, res) {
-  console.log(req.params.key);
+  console.log(req.params.key + " in pageRoute line 15"); //it is always undefined
   if (req.params.key === undefined) {
     req.params.key = "home";
   }
-  let page = await pageModel.getPage(req.params.key);
-  let menu = await pageModel.getMenu();
+  let page = await pageModel.getPage(req.params.key); // only ever sends home as the key because we set it on line 17
+  let menu = await pageModel.getMenu(); // getMenu works :)
 
-  //console.log(req.user);
   if (page[0] !== undefined) {
-    //console.log(req.params.key);
     res.render("body", {
-      menu: menu,
       page: page[0],
+      menu: menu,
       user: req.user,
     });
   } else {

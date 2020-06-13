@@ -1,14 +1,18 @@
 <body>    
     {{> header}}
-    {{> login}}
-    {{#if user.auth}}
-        {{> menu}}
-    {{/if}}
-    {{#with page}}
-    {{page.data.pageKey}} <!-- hoping that the partial name matches with the db pageKey names and that it works here-->
-    {{/with}}
-    {{> footer}}
+    <div id="flexbox">
+        <div id="aside">
+            {{> menu}}
+        </div>
+        <div id="main-page">
+           {{> home}}
+        </div>
+    </div>    
+  {{> footer}}
 </body>
+
+    
+    
 
 
 

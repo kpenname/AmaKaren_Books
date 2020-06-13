@@ -1,29 +1,21 @@
 <div class="form-header">
-    <h3 id="logIn">Login Form</h3>
+    <h3 id="logIn">Log in to your account</h3>
 </div>    
-<div id="loginForm" style="visibility: hidden; height: 0;" class="login-form" >
-    <form action="" method="GET">
+<div id="loginForm" style="visibility: hidden; height: 0;" >
+    <form action="" method="GET" class="form">
         <input type="text" name="username" id="username" placeholder="Username" required />
         <input type="password" name="password" id="password" placeholder="Password" required />
-        <input type="submit" onclick="submitForm()" />
+        <button id="btnLogin" class="btn" type="submit">Log in</button>
     </form>
 </div>
 
 <div class="form-header">
-    <h2 id="createHeading">Create an Account!</h2>
+    <h2 id="createHeading">Create an Account</h2>
 </div>
 <div id="createForm" style="visibility: hidden; height: 0;">
     <form action="/addUser/" method="POST" class="form">
-        <div class="form-field">
-            <label for="txtAddUsername">Username</label>
-            <input type="text" class="input" id="txtAddUsername" name="txtAddUsername" />
-        </div>
-        <div class="form-field">
-            <label for="txtAddPassword">Password</label>
-            <input type="password" class="input" id="txtAddPassword" name="txtAddPassword" />
-        </div>
-        <div class="form-actions">
-            <button id="createAccount" class="btn" type="submit">Create!</button>
-        </div>
+        <input type="text" class="input" id="txtAddUsername" name="txtAddUsername" placeholder="Username" required />
+        <input type="password" class="input" id="txtAddPassword" name="txtAddPassword" placeholder="Password" required />
+        <button id="createAccount" class="btn" type="submit">Join</button>
     </form>
 </div>

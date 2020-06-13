@@ -9,30 +9,15 @@ var ottawaLng = -75.6691652;
 // ************ start of window load *************//
 
 window.addEventListener("load", async (e) => {
-  // selecting the send message text to show message dialog
-  let sendMsg = document.getElementById("sendMsg");
-  sendMsg.addEventListener("click", showMsgForm);
-  sendMsg.style.cursor = "pointer";
-
-  // selecting the create text to show create account dialog
-  let createHeading = document.getElementById("createHeading");
-  createHeading.addEventListener("click", showCreateAccount);
-  createHeading.style.cursor = "pointer";
-
-  // selecting the update heading to add details to your account
-  let updateHeading = document.getElementById("updateHeading");
-  updateHeading.addEventListener("click", showUpdateForm);
-  updateHeading.style.cursor = "pointer";
-
   // selecting the login text to show login dialog
   let logIn = document.getElementById("logIn");
   logIn.addEventListener("click", showLoginForm);
   logIn.style.cursor = "pointer";
 
-  // selecting the show map text to show map
-  let showMap = document.getElementById("showMap");
-  showMap.addEventListener("click", displayMap);
-  showMap.style.cursor = "pointer";
+  // selecting the create text to show create account dialog
+  let createHeading = document.getElementById("createHeading");
+  createHeading.addEventListener("click", showCreateAccount);
+  createHeading.style.cursor = "pointer";
 });
 
 // ************ end of window load *************//
@@ -45,41 +30,23 @@ function showMsgForm() {
 
 function showLoginForm() {
   let loginForm = document.getElementById("loginForm");
-  loginForm.style.visibility = "visible";
-  loginForm.style.height = "100%";
+  if (loginForm.style.visibility === "hidden") {
+    loginForm.style.visibility = "visible";
+    loginForm.style.height = "100%";
+  } else {
+    loginForm.style.visibility = "hidden";
+    loginForm.style.height = "0";
+  }
 }
 
 function showCreateAccount() {
   let createForm = document.getElementById("createForm");
-  createForm.style.visibility = "visible";
-  createForm.style.height = "100%";
-}
-
-function showUpdateForm() {
-  let updateForm = document.getElementById("updateForm");
-  updateForm.style.visibility = "visible";
-  updateForm.style.height = "100%";
-}
-
-function submitForm() {
-  console.log("In here");
-  window.location.href = "users.html";
-
-  if (document.loginForm.username.value == "") {
-    alert("Please enter your username");
+  if (createForm.style.visibility === "hidden") {
+    createForm.style.visibility = "visible";
+    createForm.style.height = "100%";
   } else {
-    $.ajax({
-      url:
-        "localhost:9000/registerUser?username=" +
-        document.myForm.username.value +
-        "&password=" +
-        document.myForm.password.value,
-      method: "GET",
-      success: function (response) {
-        // validation checks
-        window.location.href = "users.html";
-      },
-    });
+    createForm.style.visibility = "hidden";
+    createForm.style.height = "0";
   }
 }
 

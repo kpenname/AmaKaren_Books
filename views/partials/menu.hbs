@@ -1,8 +1,10 @@
-<nav>
+<nav id="aside">
+
+{{> login}}    
     <ul id="nav-menu">
         {{#each menu}}
-           <li><a class="menu_link" href="/{{pageKey}}"> {{title}}</a></li>  
-           <!--this is link for each menu item (the for the URL /pageKey) -->
+           <li><a href="/{{ pageKey }}">{{ title }}</a></li>            
         {{/each}}
     </ul>
+   
 </nav>
