@@ -16,7 +16,7 @@ async function getPageWithDefault(req, res) {
   let page = await pageModel.getPage(req.params.key);
   let menu = await pageModel.getMenu();
 
-  console.log("req.user = " + req.user);
+  console.log(req.user);
   if (page[0] !== undefined) {
     res.render(req.params.key, {
       page: page[0],

@@ -2,65 +2,10 @@ const db = require("../config/database");
 const crypto = require("crypto");
 
 module.exports = {
-  getUser: async function (userName, passWord) {
-    let connection = await db.getConnection();
-    const rows = await connection.query(
-      "SELECT * FROM `users` WHERE `userName` = ? AND `passWord` = ? LIMIT 1",
-      [userName, passWord]
-    );
-    if (rows.length > 0) {
-      return { user: rows[0] };
-    }
-    return { user: null };
-  },
-
-  getAllUserInfo: async function () {
-    let connection = await db.getConnection();
-    const rows = await connection.query("SELECT * FROM `users`;");
-    if (rows.length > 0) {
-      return { users: rows };
-    }
-    return { users: null };
-  },
-
-  addUser: async function (username, password) {
-    let connection = await db.getConnection();
-    const rows = await connection.query(
-      "INSERT INTO users (userName, passWord) VALUES (?,?)",
-      [username, password]
-    );
-    if (rows.affectedRows > 0) {
-      return { userId: rows.insertId };
-    }
-    return { userId: null };
-  },
-
-  updateUser: async function (
-    first,
-    last,
-    address,
-    city,
-    province,
-    postal,
-    email,
-    phone,
-    userId
-  ) {
-    let connection = await db.getConnection();
-    const rows = await connection.query(
-      "UPDATE TABLE users (firstName, lastName, address, City, province, postCode, email, phone) VALUES (?,?,?,?,?,?,?,?) WHERE userId = ?",
-      [first, last, address, city, province, postal, email, phone, userId]
-    );
-    if (rows.affectedRows > 0) {
-      return { userId: rows.insertId };
-    }
-    return { userId: null };
-  },
-
   setCookieHash: async function (user, chash) {
     let conn = await db.getConnection();
     const row = await conn.query(
-      "UPDATE `users` SET `cookieHash`=? WHERE `username`=?",
+      "UPDATE `users` SET `cookieHash`= ? WHERE `userName`= ?",
       [chash, user]
     );
     conn.end();
@@ -70,7 +15,7 @@ module.exports = {
   getAuthorizedWithHash: async function (user, hash) {
     let conn = await db.getConnection();
     // run prepared query finding matching user
-    const row = await conn.query("SELECT * FROM users WHERE username = ?", [
+    const row = await conn.query("SELECT * FROM `users` WHERE userName = ?", [
       user,
     ]);
     conn.end();
@@ -86,7 +31,7 @@ module.exports = {
   },
   getAuthorizedWithPassword: async function (user, pwd) {
     let conn = await db.getConnection();
-    const row = await conn.query("SELECT * FROM users WHERE username = ?", [
+    const row = await conn.query("SELECT * FROM `users` WHERE userName = ?", [
       user,
     ]);
     conn.end();
@@ -102,4 +47,59 @@ module.exports = {
     }
     return { auth: false };
   },
+
+  // getUser: async function (userName, passWord) {
+  //   let connection = await db.getConnection();
+  //   const rows = await connection.query(
+  //     "SELECT * FROM `users` WHERE `userName` = ? AND `passWord` = ? LIMIT 1",
+  //     [userName, passWord]
+  //   );
+  //   if (rows.length > 0) {
+  //     return { user: rows[0] };
+  //   }
+  //   return { user: null };
+  // },
+
+  // getAllUserInfo: async function () {
+  //   let connection = await db.getConnection();
+  //   const rows = await connection.query("SELECT * FROM `users`;");
+  //   if (rows.length > 0) {
+  //     return { users: rows };
+  //   }
+  //   return { users: null };
+  // },
+
+  // addUser: async function (username, password) {
+  //   let connection = await db.getConnection();
+  //   const rows = await connection.query(
+  //     "INSERT INTO users (userName, passWord) VALUES (?,?)",
+  //     [username, password]
+  //   );
+  //   if (rows.affectedRows > 0) {
+  //     return { userId: rows.insertId };
+  //   }
+  //   return { userId: null };
+  // },
+
+  // updateUser: async function (
+  //   first,
+  //   last,
+  //   address,
+  //   city,
+  //   province,
+  //   postal,
+  //   email,
+  //   phone,
+  //   userId
+  // ) {
+  //   let connection = await db.getConnection();
+  //   const rows = await connection.query(
+  //     "UPDATE TABLE users (firstName, lastName, address, City, province, postCode, email, phone) VALUES (?,?,?,?,?,?,?,?) WHERE userId = ?",
+  //     [first, last, address, city, province, postal, email, phone, userId]
+  //   );
+  //   if (rows.affectedRows > 0) {
+  //     return { userId: rows.insertId };
+  //   }
+  //   return { userId: null };
+  // },
 };

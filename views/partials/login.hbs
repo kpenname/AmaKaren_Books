@@ -2,7 +2,8 @@
     <h3 id="logIn">Log in to your account</h3>
 </div>    
 <div id="loginForm" style="visibility: hidden; height: 0;" >
-    <form action="" method="GET" class="form">
+
+    <form action="{{page.pageKey}}" method="POST" class="form" enctype="application/x-www-form-urlencoded">
         <input type="text" name="username" id="username" placeholder="Username" required />
         <input type="password" name="password" id="password" placeholder="Password" required />
         <button id="btnLogin" class="btn" type="submit">Log in</button>
@@ -10,10 +11,10 @@
 </div>
 
 <div class="form-header">
-    <h2 id="createHeading">Create an Account</h2>
+    <h3 id="createHeading">Create an Account</h3>
 </div>
 <div id="createForm" style="visibility: hidden; height: 0;">
-    <form action="/addUser/" method="POST" class="form">
+    <form action="/addUser/" method="POST" class="form" enctype="application/x-www-form-urlencoded">
         <input type="text" class="input" id="txtAddUsername" name="txtAddUsername" placeholder="Username" required />
         <input type="password" class="input" id="txtAddPassword" name="txtAddPassword" placeholder="Password" required />
         <button id="createAccount" class="btn" type="submit">Join</button>

@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const db = require("../config/db");
-const User = require("../model/userModel");
+const db = require("../config/database");
+const User = require("../Model/UserModel");
 const crypto = require("crypto");
 
 router.post("/add", async (req, res, next) => {
@@ -37,7 +37,7 @@ router.post("/add", async (req, res, next) => {
       });
 
       // render the page view
-      res.render("body", {
+      res.render("home", {
         page: "home",
         user: req.user,
       });
@@ -58,8 +58,8 @@ router.post("/update", async (req, res, next) => {
     );
     conn.end();
     // render the page view
-    res.render("body", {
-      pageKey: "account",
+    res.render("home", {
+      pageKey: "home",
       user: req.user,
     });
   } else {

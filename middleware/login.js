@@ -1,4 +1,5 @@
 const userModel = require("../Model/UserModel");
+
 module.exports = async (req, res, next) => {
   req.user = { auth: false };
   if (req.query.logout !== undefined) {
@@ -13,7 +14,7 @@ module.exports = async (req, res, next) => {
       const userStatus = await userModel.getAuthorizedWithPassword(user, pwd);
       req.user = userStatus;
       if (userStatus.auth) {
-        res.cookie("user", userStatus.user.username, {
+        res.cookie("user", userStatus.user.userName, {
           maxAge: 1000 * 60 * 60 * 12,
         });
         res.cookie("chash", userStatus.cookieHash, {

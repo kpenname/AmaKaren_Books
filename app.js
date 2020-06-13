@@ -3,8 +3,10 @@ const path = require("path");
 const dbLayer = require("./config/database");
 const geocoder = require("node-geocoder-ca").Geocoder;
 const axios = require("axios");
+const login = require("./middleware/login");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const accountRouter = require("./routes/accountRoute");
 const pageRoute = require("./routes/pageRoute");
 const hbs = require("hbs");
 
@@ -24,8 +26,11 @@ app.set("view engine", "hbs");
 // these are called from layout by using {{> partialName}} and then hbs looks in
 // the Views / partials folder for that name
 
-app.use("/", pageRoute); // this should be at the end of the list of routes
-// to cover all other routes not specified.  Later...
+// middleware
+app.use(login);
+
+app.use("/account", accountRouter);
+app.use("/", pageRoute);
 
 app.use("/resourses", express.static(path.join(__dirname, "public")));
 // this isn't a folder called resourses.
