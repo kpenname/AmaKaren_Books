@@ -5,7 +5,9 @@
             {{> menu}}
         </div>
         <div id="main-page">
-           {{> home}}
+            {{#with page}}{{pageKey}}{{/with}}
+            <div id="partial-page"></div>
+            </div>
         </div>
     </div>    
   {{> footer}}

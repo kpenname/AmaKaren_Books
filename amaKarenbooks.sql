@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `bookreview` (
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table amakaren_books.bookreview: ~5 rows (approximately)
+DELETE FROM `bookreview`;
 /*!40000 ALTER TABLE `bookreview` DISABLE KEYS */;
 INSERT INTO `bookreview` (`bookReviewId`, `userId`, `bookId`, `reviewText`, `recommended`, `rating`) VALUES
 	(8, 5, 8, 'The Hunger Games is a compelling novel focusing on life in an authoritarian society in which young people must compete to the death in the annual Hunger Games.', 'Yes', '5'),
@@ -60,6 +61,7 @@ CREATE TABLE IF NOT EXISTS `books` (
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table amakaren_books.books: ~24 rows (approximately)
+DELETE FROM `books`;
 /*!40000 ALTER TABLE `books` DISABLE KEYS */;
 INSERT INTO `books` (`bookId`, `userId`, `title`, `author`, `genre`, `yearPub`, `pages`, `available`) VALUES
 	(5, 2, 'Pride and Prejudice', 'Jane Austen ', 'Drama', 1994, 261, 'Yes'),
@@ -99,12 +101,37 @@ CREATE TABLE IF NOT EXISTS `message` (
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table amakaren_books.message: ~3 rows (approximately)
+DELETE FROM `message`;
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
 INSERT INTO `message` (`messageId`, `message`, `email`, `dateSent`) VALUES
 	(1, 'I really love this site!', 'kiki@mail.com', '2020-06-08 17:01:49'),
 	(8, 'Great', 'kiki@mail.com', '2020-06-08 17:52:35'),
 	(9, 'I think this is really great!', 'mailer@mail.com', '2020-06-08 20:43:55');
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
+
+-- Dumping structure for table amakaren_books.pages
+DROP TABLE IF EXISTS `pages`;
+CREATE TABLE IF NOT EXISTS `pages` (
+  `pageId` int(10) NOT NULL AUTO_INCREMENT,
+  `pageKey` varchar(50) DEFAULT '0',
+  `title` varchar(50) DEFAULT '0',
+  `showInMenu` int(1) DEFAULT NULL,
+  `menuOrder` int(2) DEFAULT 1,
+  `content` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`pageId`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+
+-- Dumping data for table amakaren_books.pages: ~6 rows (approximately)
+DELETE FROM `pages`;
+/*!40000 ALTER TABLE `pages` DISABLE KEYS */;
+INSERT INTO `pages` (`pageId`, `pageKey`, `title`, `showInMenu`, `menuOrder`, `content`) VALUES
+	(1, 'home', 'Home', 1, 1, '{{> home }}'),
+	(2, 'login', 'Login', 0, 0, NULL),
+	(3, 'account', 'Your Account', 1, 2, '{{> account }}'),
+	(4, 'wishlist', 'Your Wishlist', 1, 3, '{{> wishlist}}'),
+	(5, 'available', 'Your Available Books', 1, 4, '{{> available}}'),
+	(6, 'review', 'Review a Book', 1, 5, '{{> message}}');
+/*!40000 ALTER TABLE `pages` ENABLE KEYS */;
 
 -- Dumping structure for table amakaren_books.users
 DROP TABLE IF EXISTS `users`;
@@ -120,27 +147,38 @@ CREATE TABLE IF NOT EXISTS `users` (
   `City` varchar(25) DEFAULT NULL,
   `province` set('QC','ON','AB','MN','BC','NB','SK','PE','NS','NL') DEFAULT NULL,
   `postCode` varchar(25) DEFAULT NULL,
+  `passHash` varchar(255) DEFAULT NULL,
+  `cookieHash` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table amakaren_books.users: ~22 rows (approximately)
+DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`userId`, `firstName`, `lastName`, `userName`, `passWord`, `email`, `phone`, `address`, `City`, `province`, `postCode`) VALUES
-	(2, 'Amy', 'lewis', 'alewis', '1234', 'amy@gmail.com', 2522, '397 Blvd Cite des Jeunes', 'Gatineau', 'QC', 'J8Y6L4'),
-	(3, 'Peter ', 'Rosato', 'prosato', 'abcd', 'dakota.spor@yahoo.com', 3522, '141 Boulevard du Mont bleu', 'Gatineau', 'QC', 'J8Z1K2'),
-	(4, 'Brianna', 'Hall', 'bhall', '1234', 'b.hall@randatmail.com', 2144, '9 Rue Talbot', 'Gatineau', 'QC', 'J8Z1LB'),
-	(5, 'Adele', 'Rogers', 'arogers', 'abcd', 'a.rogers@randatmail.com', 2355, '63 Rue Lemieux', 'Gatineau', 'QC', 'J8Z1G7'),
-	(6, 'Derek', 'Gray', 'dgray', '1234', 'd.gray@randatmail.com', 5477, '76 Rue Pelletier', 'Gatineau', 'QC', 'J8L1C5'),
-	(7, 'Eric', 'Morgan', 'emorgan', 'abcd', 'e.morgan@randatmail.com', 3554, '369 Boulevard Riel', 'Gatineau', 'QC', 'J8Z1B3'),
-	(8, 'Annabella', 'Henderson', 'ahenderson', '1234', 'a.henderson@randatmail.com', 3223, '320 Rue Francois de Levis', 'Gatineau', 'QC', 'J8Z1A4'),
-	(9, 'Catherine', 'Farrell', 'cfarrell', 'abcd', 'c.farrell@randatmail.com', 5465, '71 Rue d\'Orsonnens', 'Gatineau', 'QC', 'J8Y6H8'),
-	(10, 'Richard', 'Ellis', 'rellis', '1234', 'r.ellis@randatmail.com', 9874, '311 Rue Francois de Levis', 'Gatineau', 'QC', 'J8Z1A3'),
-	(11, 'Vanessa', 'Hunt', 'vhunt', 'abcd', 'v.hunt@randatmail.com', 6545, '4 Rue Alie', 'Gatineau', 'QC', 'J8Z1M9'),
-	(12, 'Michael', 'Nelson', 'mnelson', '1234', 'm.nelson@randatmail.com', 8497, '145 Rue Jolicoeur', 'Gatineau', 'QC', 'J8Z1C8'),
-	(13, 'Dale', 'Mason', 'dmason', 'abcd', 'd.mason@randatmail.com', 9954, '37 Rue Bernier', 'Gatineau', 'QC', 'J8Z1E7'),
-	(14, 'Robert', 'Higgins', 'rhiggins', '1234', 'r.higgins@randatmail.com', 3259, '35 Rue Hinchey', 'Gatineau', 'QC', 'J8Z1H1'),
-	(15, 'Paul', 'Brown', 'pbrown', 'abcd', 'p.brown@randatmail.com', 5412, '86 Rue Boucher', 'Gatineau', 'QC', 'J8Y6G6'),
-	(27, NULL, NULL, 'samIam', '456', NULL, NULL, '', NULL, NULL, NULL);
+INSERT INTO `users` (`userId`, `firstName`, `lastName`, `userName`, `passWord`, `email`, `phone`, `address`, `City`, `province`, `postCode`, `passHash`, `cookieHash`) VALUES
+	(2, 'Amy', 'lewis', 'alewis', '1234', 'amy@gmail.com', 2522, '397 Blvd Cite des Jeunes', 'Gatineau', 'QC', 'J8Y6L4', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
+	(3, 'Peter ', 'Rosato', 'prosato', 'abcd', 'dakota.spor@yahoo.com', 3522, '141 Boulevard du Mont bleu', 'Gatineau', 'QC', 'J8Z1K2', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
+	(4, 'Brianna', 'Hall', 'bhall', '1234', 'b.hall@randatmail.com', 2144, '9 Rue Talbot', 'Gatineau', 'QC', 'J8Z1LB', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
+	(5, 'Adele', 'Rogers', 'arogers', 'abcd', 'a.rogers@randatmail.com', 2355, '63 Rue Lemieux', 'Gatineau', 'QC', 'J8Z1G7', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
+	(6, 'Derek', 'Gray', 'dgray', '1234', 'd.gray@randatmail.com', 5477, '76 Rue Pelletier', 'Gatineau', 'QC', 'J8L1C5', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
+	(7, 'Eric', 'Morgan', 'emorgan', 'abcd', 'e.morgan@randatmail.com', 3554, '369 Boulevard Riel', 'Gatineau', 'QC', 'J8Z1B3', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
+	(8, 'Annabella', 'Henderson', 'ahenderson', '1234', 'a.henderson@randatmail.com', 3223, '320 Rue Francois de Levis', 'Gatineau', 'QC', 'J8Z1A4', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
+	(9, 'Catherine', 'Farrell', 'cfarrell', 'abcd', 'c.farrell@randatmail.com', 5465, '71 Rue d\'Orsonnens', 'Gatineau', 'QC', 'J8Y6H8', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
+	(10, 'Richard', 'Ellis', 'rellis', '1234', 'r.ellis@randatmail.com', 9874, '311 Rue Francois de Levis', 'Gatineau', 'QC', 'J8Z1A3', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
+	(11, 'Vanessa', 'Hunt', 'vhunt', 'abcd', 'v.hunt@randatmail.com', 6545, '4 Rue Alie', 'Gatineau', 'QC', 'J8Z1M9', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
+	(12, 'Michael', 'Nelson', 'mnelson', '1234', 'm.nelson@randatmail.com', 8497, '145 Rue Jolicoeur', 'Gatineau', 'QC', 'J8Z1C8', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
+	(13, 'Dale', 'Mason', 'dmason', 'abcd', 'd.mason@randatmail.com', 9954, '37 Rue Bernier', 'Gatineau', 'QC', 'J8Z1E7', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
+	(14, 'Robert', 'Higgins', 'rhiggins', '1234', 'r.higgins@randatmail.com', 3259, '35 Rue Hinchey', 'Gatineau', 'QC', 'J8Z1H1', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
+	(15, 'Paul', 'Brown', 'pbrown', 'abcd', 'p.brown@randatmail.com', 5412, '86 Rue Boucher', 'Gatineau', 'QC', 'J8Y6G6', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
+	(27, NULL, NULL, 'samIam', '456', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL),
+	(28, NULL, NULL, 'tiny', '321', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL),
+	(29, NULL, NULL, 'tiny', '321', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL),
+	(30, NULL, NULL, 'twinkleToes', '123', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL),
+	(31, NULL, NULL, 'user123', '123', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL),
+	(32, NULL, NULL, 'hollyGoLightly', 'sunshine', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL),
+	(33, NULL, NULL, 'hollyGoLightly', '1234', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL),
+	(34, NULL, NULL, 'dino123', '123', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL),
+	(35, NULL, NULL, 'peterPan', 'abc', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Dumping structure for table amakaren_books.wishlist
@@ -156,6 +194,7 @@ CREATE TABLE IF NOT EXISTS `wishlist` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table amakaren_books.wishlist: ~0 rows (approximately)
+DELETE FROM `wishlist`;
 /*!40000 ALTER TABLE `wishlist` DISABLE KEYS */;
 /*!40000 ALTER TABLE `wishlist` ENABLE KEYS */;
 

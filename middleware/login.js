@@ -1,4 +1,4 @@
-const userModel = require("../model/userModel");
+const userModel = require("../Model/UserModel");
 module.exports = async (req, res, next) => {
   req.user = { auth: false };
   if (req.query.logout !== undefined) {

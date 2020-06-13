@@ -18,6 +18,11 @@ window.addEventListener("load", async (e) => {
   let createHeading = document.getElementById("createHeading");
   createHeading.addEventListener("click", showCreateAccount);
   createHeading.style.cursor = "pointer";
+
+  let mainPage = document.getElementById("main-page");
+  let pageKey = mainPage.innerHTML;
+
+  let partialPage = document.getElementById("partial-page");
 });
 
 // ************ end of window load *************//

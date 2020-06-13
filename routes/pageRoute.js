@@ -19,6 +19,7 @@ async function getPageWithDefault(req, res) {
   let page = await pageModel.getPage(req.params.key); // only ever sends home as the key because we set it on line 17
   let menu = await pageModel.getMenu(); // getMenu works :)
 
+  console.log(req.user);
   if (page[0] !== undefined) {
     res.render("body", {
       page: page[0],
