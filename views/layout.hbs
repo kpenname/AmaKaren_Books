@@ -17,5 +17,18 @@ you save a .js file because those are tracked -->
     />
     <link href="/resourses/css/style.css" rel="stylesheet" type="text/css"/>
 </head>
-  {{{body}}}
+ <body>    
+    {{> header}}
+    <div id="flexbox">
+        <div id="aside">
+            {{> menu}}
+        </div>
+        <div id="main-page">
+            {{{body}}}
+            <div id="partial-page"></div>
+            </div>
+        </div>
+    </div>    
+  {{> footer}}
+</body>
 </html>  

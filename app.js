@@ -24,7 +24,7 @@ app.set("view engine", "hbs");
 // these are called from layout by using {{> partialName}} and then hbs looks in
 // the Views / partials folder for that name
 
-app.get("/", pageRoute); // this should be at the end of the list of routes
+app.use("/", pageRoute); // this should be at the end of the list of routes
 // to cover all other routes not specified.  Later...
 
 app.use("/resourses", express.static(path.join(__dirname, "public")));

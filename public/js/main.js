@@ -18,14 +18,37 @@ window.addEventListener("load", async (e) => {
   let createHeading = document.getElementById("createHeading");
   createHeading.addEventListener("click", showCreateAccount);
   createHeading.style.cursor = "pointer";
-
-  let mainPage = document.getElementById("main-page");
-  let pageKey = mainPage.innerHTML;
-
-  let partialPage = document.getElementById("partial-page");
 });
 
 // ************ end of window load *************//
+
+// function whichPage() {
+
+//   let mainPage = document.getElementById("main-page");
+//   let pageKey = mainPage.innerHTML;
+//   let partialPage = document.getElementById("partial-page");
+
+//   switch (pageKey) {
+//     case "home":
+//       partialPage.innerHtml = "{{> home }}";
+//       break;
+//     case "account":
+//       partialPage.innerHtml = "{{> account }}";
+//       break;
+//     case "wishlist":
+//       partialPage.innerHtml = "{{> wishlist }}";
+//       break;
+//     case "available":
+//       partialPage.innerHtml = "{{> available }}";
+//       break;
+//     case "review":
+//       partialPage.innerHtml = "{{> review }}";
+//       break;
+//     case "message":
+//       partialPage.innerHtml = "{{> message }}";
+//       break;
+//   }
+// }
 
 function showMsgForm() {
   let msg = document.getElementById("msg");
