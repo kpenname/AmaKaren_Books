@@ -1,3 +1,10 @@
+{{#if user.auth}}
+<div class="form-header">
+    <a href="/?logout=1"><h3 id="logOut">Log Out</h3></a>
+</div>
+
+{{else}}
+
 <div class="form-header">
     <h3 id="logIn">Log in to your account</h3>
 </div>    
@@ -20,3 +27,5 @@
         <button id="createAccount" class="btn" type="submit">Join</button>
     </form>
 </div>
+
+{{/if}}

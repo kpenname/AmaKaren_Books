@@ -35,7 +35,7 @@ app.use("/", pageRoute);
 app.use("/resourses", express.static(path.join(__dirname, "public")));
 // this isn't a folder called resourses.
 // It is just a way to access other resources by calling the endpoint "/resourses/something"
-// this is used in layout.hbs when calling style.css and main.js
+// this is used in layout.hbs when calling style.css, images, and main.js
 
 app.get("/geocoding", async (req, res) => {
   let postcode = req.param.postcode;

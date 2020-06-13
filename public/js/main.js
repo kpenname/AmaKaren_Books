@@ -18,37 +18,15 @@ window.addEventListener("load", async (e) => {
   let createHeading = document.getElementById("createHeading");
   createHeading.addEventListener("click", showCreateAccount);
   createHeading.style.cursor = "pointer";
+
+  // selecting the "find books" text to show the map
+  let showMap = document.getElementById("showMap"); // not working because the window is already loaded?
+  // the wishlist template is just a part of the page.  Argg!! Templates are supposed to make things easyier???!!
+  showMap.addEventListener("click", displayMap);
+  showMap.style.cursor = "pointer";
 });
 
 // ************ end of window load *************//
-
-// function whichPage() {
-
-//   let mainPage = document.getElementById("main-page");
-//   let pageKey = mainPage.innerHTML;
-//   let partialPage = document.getElementById("partial-page");
-
-//   switch (pageKey) {
-//     case "home":
-//       partialPage.innerHtml = "{{> home }}";
-//       break;
-//     case "account":
-//       partialPage.innerHtml = "{{> account }}";
-//       break;
-//     case "wishlist":
-//       partialPage.innerHtml = "{{> wishlist }}";
-//       break;
-//     case "available":
-//       partialPage.innerHtml = "{{> available }}";
-//       break;
-//     case "review":
-//       partialPage.innerHtml = "{{> review }}";
-//       break;
-//     case "message":
-//       partialPage.innerHtml = "{{> message }}";
-//       break;
-//   }
-// }
 
 function showMsgForm() {
   let msg = document.getElementById("msg");
@@ -57,6 +35,7 @@ function showMsgForm() {
 }
 
 function showLoginForm() {
+  // can we make this modal?  https://www.w3schools.com/howto/howto_css_login_form.asp
   let loginForm = document.getElementById("loginForm");
   if (loginForm.style.visibility === "hidden") {
     loginForm.style.visibility = "visible";

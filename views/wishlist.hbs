@@ -1,1 +1,21 @@
 <h2>This is the wishlist page</h2>
+<br/>
+<hr>
+<div>
+    <p>
+        The books on your wishlist are:
+    </p>
+</div>
+{{#each book}} {{! we need to specify book as the output from the query - see menu in pageRoute}}
+                {{! let menu = await pageModel.getMenu();  }}
+<div>
+    <p>{{title}}, by {{author}}</p>
+</div>
+{{/each}}
+
+<p id="showMap">Find books in your area.</p>
+
+<div id="map">
+    {{! this is where the map can go.  We should see the markers for the books on the wishlist.  
+    Yes, I know that's easier said than done. ;) }}
+</div>
