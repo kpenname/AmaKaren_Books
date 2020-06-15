@@ -21,7 +21,7 @@
     <h3 id="createHeading">Create an Account</h3>
 </div>
 <div id="createForm" style="visibility: hidden; height: 0;">
-    <form action="/addUser/" method="POST" class="form" enctype="application/x-www-form-urlencoded">
+    <form action="{{page.pageKey}}" method="POST" class="form" enctype="application/x-www-form-urlencoded">
         <input type="text" class="input" id="txtAddUsername" name="txtAddUsername" placeholder="Username" required />
         <input type="password" class="input" id="txtAddPassword" name="txtAddPassword" placeholder="Password" required />
         <button id="createAccount" class="btn" type="submit">Join</button>

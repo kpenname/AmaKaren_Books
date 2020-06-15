@@ -69,37 +69,37 @@ module.exports = {
   //   return { users: null };
   // },
 
-  // addUser: async function (username, password) {
-  //   let connection = await db.getConnection();
-  //   const rows = await connection.query(
-  //     "INSERT INTO users (userName, passWord) VALUES (?,?)",
-  //     [username, password]
-  //   );
-  //   if (rows.affectedRows > 0) {
-  //     return { userId: rows.insertId };
-  //   }
-  //   return { userId: null };
-  // },
+  addUser: async function (username, password) {
+    let connection = await db.getConnection();
+    const rows = await connection.query(
+      "INSERT INTO users (userName, passWord) VALUES (?,?)",
+      [username, password]
+    );
+    if (rows.affectedRows > 0) {
+      return { userId: rows.insertId };
+    }
+    return { userId: null };
+  },
 
-  // updateUser: async function (
-  //   first,
-  //   last,
-  //   address,
-  //   city,
-  //   province,
-  //   postal,
-  //   email,
-  //   phone,
-  //   userId
-  // ) {
-  //   let connection = await db.getConnection();
-  //   const rows = await connection.query(
-  //     "UPDATE TABLE users (firstName, lastName, address, City, province, postCode, email, phone) VALUES (?,?,?,?,?,?,?,?) WHERE userId = ?",
-  //     [first, last, address, city, province, postal, email, phone, userId]
-  //   );
-  //   if (rows.affectedRows > 0) {
-  //     return { userId: rows.insertId };
-  //   }
-  //   return { userId: null };
-  // },
+  updateUser: async function (
+    first,
+    last,
+    address,
+    city,
+    province,
+    postal,
+    email,
+    phone,
+    userId
+  ) {
+    let connection = await db.getConnection();
+    const rows = await connection.query(
+      "UPDATE TABLE users (firstName, lastName, address, City, province, postCode, email, phone) VALUES (?,?,?,?,?,?,?,?) WHERE userId = ?",
+      [first, last, address, city, province, postal, email, phone, userId]
+    );
+    if (rows.affectedRows > 0) {
+      return { userId: rows.insertId };
+    }
+    return { userId: null };
+  },
 };

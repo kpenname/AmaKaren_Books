@@ -15,7 +15,8 @@ const port = 9000;
 
 app.use(express.json());
 
-app.use(bodyParser.urlencoded({ extended: true })); // urlencoded just means that the information in the "body" (page)
+app.use(bodyParser.urlencoded({ extended: true }));
+// urlencoded just means that the information in the "body" (page)
 // is sent back as a string to the url
 
 app.use(cookieParser());
@@ -26,11 +27,10 @@ app.set("view engine", "hbs");
 // these are called from layout by using {{> partialName}} and then hbs looks in
 // the Views / partials folder for that name
 
-// middleware
+// middleware has to go before the routes - in the middle?
 app.use(login);
 
 app.use("/account", accountRouter);
-app.use("/", pageRoute);
 
 app.use("/resourses", express.static(path.join(__dirname, "public")));
 // this isn't a folder called resourses.
@@ -74,6 +74,10 @@ app.post("/updateUser/", async (req, res) => {
   console.log(userId);
   res.json(result);
 });
+
+app.use("/", pageRoute);
+// I put the app.use("/") at the end so that the program would
+// runn all the routes we have specified first before the default
 
 app.listen(port, () => {
   dbLayer.init();

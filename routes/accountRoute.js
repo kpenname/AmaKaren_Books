@@ -3,15 +3,15 @@ const db = require("../config/database");
 const User = require("../Model/UserModel");
 const crypto = require("crypto");
 
-router.post("/add", async (req, res, next) => {
+router.post("/addUser", async (req, res, next) => {
   if (req.user !== undefined) {
-    let user = req.body.createUsername.trim().toLowerCase();
-    let pwd = req.body.createPassword;
+    let user = req.body.txtAddUsername.trim().toLowerCase();
+    let pwd = req.body.txtAddPassword;
     const hash = crypto.createHash("sha1").update(pwd).digest("base64");
     let conn = await db.getConnection();
 
     const row = await conn.query(
-      "INSERT INTO users (username, passHash) VALUES (?,?)",
+      "INSERT INTO users (userName, passHash) VALUES (?,?)",
       [user, hash]
     );
     conn.end();
@@ -49,7 +49,16 @@ router.post("/add", async (req, res, next) => {
 
 router.post("/update", async (req, res, next) => {
   if (req.user !== undefined) {
+    // if they are logged in
+
     let first = req.body.firstName.trim();
+    // firstname is the name of the form field
+    // to update an account, we can use the form
+    // in the account template - but... I don't know about
+    // using javascript inside templates that load after
+    // the page loads.
+    // will probably have to put the <Script> in the template itself
+
     let userId = req.user.user.userId;
     let conn = await db.getConnection();
     const row = await conn.query(
