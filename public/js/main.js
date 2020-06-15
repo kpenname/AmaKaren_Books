@@ -24,6 +24,8 @@ window.addEventListener("load", async (e) => {
   // the wishlist template is just a part of the page.  Argg!! Templates are supposed to make things easyier???!!
   showMap.addEventListener("click", displayMap);
   showMap.style.cursor = "pointer";
+
+  displayMap();
 });
 
 // ************ end of window load *************//

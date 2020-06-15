@@ -1,13 +1,13 @@
-{{#with books}}
+
 <h2>This is your wishlist page</h2>
 <br/>
 <hr>
     
-    {{#each}}
+  {{#each books}}
     <div>
-      <p>{{books.title}} by: {{books.author}}</p>    
+      <p>{{title}} by: {{author}}</p>    
     </div>
-    {{/each}}
+      {{/each}} 
 
 
 <p id="showMap">Find books in your area.</p>
@@ -16,4 +16,8 @@
     {{! this is where the map can go.  We should see the markers for the books on the wishlist.  
     Yes, I know that's easier said than done. ;) }}
 </div>
-{{/with}}
+
+<script>
+displayMap();
+
+</script>

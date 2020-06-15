@@ -16,16 +16,19 @@ async function getPageWithDefault(req, res) {
   }
   let page = await pageModel.getPage(req.params.key);
   let menu = await pageModel.getMenu();
-  let books = await bookModel.getBooks();
+  let data = {
+    page: page[0],
+    menu: menu,
+    user: req.user,
+  };
 
-  //console.log(req.user);
+  if (req.params.key === "wishlist" && req.user.auth) {
+    let books = await bookModel.getBooks(req.user.user.userId);
+    data.books = books;
+  }
+  console.log(data);
   if (page[0] !== undefined) {
-    res.render(req.params.key, {
-      page: page[0],
-      menu: menu,
-      books: books,
-      user: req.user,
-    });
+    res.render(req.params.key, data);
   } else {
     res.status(404);
     res.render("status404", { code: 404, status: "Not Found" });

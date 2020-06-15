@@ -2,7 +2,6 @@ const db = require("../config/database");
 
 module.exports = {
   getBooks: async function (userId) {
-    let userId = req.body.userId;
     let conn = await db.getConnection();
     const rows = await conn.query("SELECT * FROM books WHERE userId = ?", [
       userId,
@@ -10,9 +9,11 @@ module.exports = {
     conn.end();
 
     if (rows.length > 0) {
+      let books = [];
       for (let i = 0; i < rows.length; i++) {
-        return { books: rows[i] };
+        books.push(rows[i]);
       }
+      return books;
     } else {
       return null;
     }
