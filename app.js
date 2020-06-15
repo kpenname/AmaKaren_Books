@@ -57,23 +57,23 @@ app.post("/message/", async (req, res) => {
   res.json(message);
 });
 
-app.post("/updateUser/", async (req, res) => {
-  //can't do this until I have access to the user's information
-  // then this will be moved to the User model
-  let result = await User.updateUser(
-    req.body.firstNameTxt,
-    req.body.lastNameTxt,
-    req.body.addressTxt,
-    req.body.cityTxt,
-    req.body.provinceTxt,
-    req.body.postalTxt,
-    req.body.updateEmailTxt,
-    req.body.phoneTxt,
-    userId
-  );
-  console.log(userId);
-  res.json(result);
-});
+// app.post("/updateUser/", async (req, res) => {
+//   //can't do this until I have access to the user's information
+//   // then this will be moved to the User model
+//   let result = await User.updateUser(
+//     req.body.firstNameTxt,
+//     req.body.lastNameTxt,
+//     req.body.addressTxt,
+//     req.body.cityTxt,
+//     req.body.provinceTxt,
+//     req.body.postalTxt,
+//     req.body.updateEmailTxt,
+//     req.body.phoneTxt,
+//     userId
+//   );
+//   console.log(userId);
+//   res.json(result);
+// });
 
 app.use("/", pageRoute);
 // I put the app.use("/") at the end so that the program would

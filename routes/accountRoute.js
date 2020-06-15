@@ -5,6 +5,7 @@ const crypto = require("crypto");
 
 router.post("/addUser", async (req, res, next) => {
   if (req.user !== undefined) {
+    console.log(req.body.txtAddUsername);
     let user = req.body.txtAddUsername.trim().toLowerCase();
     let pwd = req.body.txtAddPassword;
     const hash = crypto.createHash("sha1").update(pwd).digest("base64");
@@ -36,41 +37,33 @@ router.post("/addUser", async (req, res, next) => {
         maxAge: 1000 * 60 * 60 * 12,
       });
 
-      // render the page view
-      res.render("home", {
-        page: "home",
-        user: req.user,
-      });
+      return res.redirect("/account");
+    } else {
+      next();
     }
-  } else {
-    next();
   }
 });
 
 router.post("/update", async (req, res, next) => {
   if (req.user !== undefined) {
-    // if they are logged in
-
-    let first = req.body.firstName.trim();
-    // firstname is the name of the form field
-    // to update an account, we can use the form
-    // in the account template - but... I don't know about
-    // using javascript inside templates that load after
-    // the page loads.
-    // will probably have to put the <Script> in the template itself
+    let first = req.body.firstNameTxt.trim();
+    let last = req.body.lastNameTxt.trim();
+    let address = req.body.addressTxt.trim();
+    let city = req.body.cityTxt.trim();
+    let province = req.body.provinceTxt.trim();
+    let postal = req.body.postalTxt.trim();
+    let email = req.body.emailTxt.trim();
+    let phone = req.body.phoneTxt.trim();
 
     let userId = req.user.user.userId;
     let conn = await db.getConnection();
     const row = await conn.query(
-      "UPDATE users SET first = ? WHERE userId = ?;",
-      [first, userId]
+      "UPDATE users SET firstName = ?, lastName = ?, address = ?, City = ?, province = ?, postCode = ?, email = ?, phone = ? WHERE userId = ?;",
+      [first, last, address, city, province, postal, email, phone, userId]
     );
     conn.end();
-    // render the page view
-    res.render("home", {
-      pageKey: "home",
-      user: req.user,
-    });
+    console.log(req.user.user);
+    return res.redirect("/home");
   } else {
     next();
   }

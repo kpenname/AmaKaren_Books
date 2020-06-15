@@ -1,41 +1,41 @@
-
+{{#with user}}
 
 <div class="form-header">
   <h2 id="updateHeading">Update your account</h2>
 </div>
 <div id="updateForm" >
-  <form action="/updateUser/" method="POST" class="form">
+  <form action="/account/update/" method="POST" class="form">
     <div class="form-field">
     <label for="firstNameTxt">First name:</label>
-    <input type="text" class="input" id="firstNameTxt" name="firstNameTxt"/>
+    <input type="text" class="input" id="firstNameTxt" name="firstNameTxt" value="{{user.firstName}}" required/>
     </div>
   <div class="form-field">
     <label for="lastNameTxt">Last Name:</label>
-    <input type="text" class="input" id="lastNameTxt" name="lastNameTxt" />
+    <input type="text" class="input" id="lastNameTxt" name="lastNameTxt" value="{{user.lastName}}" required/>
   </div>
   <div class="form-field">
     <label for="addressTxt">Address:</label>
-    <input type="text" class="input" id="addressTxt" name="addressTxt" />
+    <input type="text" class="input" id="addressTxt" name="addressTxt" value="{{user.address}}" required/>
   </div>
   <div class="form-field">
     <label for="cityTxt">City:</label>
-    <input type="text" class="input" id="cityTxt" name="cityTxt" />
+    <input type="text" class="input" id="cityTxt" name="cityTxt" value="{{user.City}}" required/>
   </div>
   <div class="form-field">
     <label for="provinceTxt">Province:</label>
-    <input type="text" class="input" id="provinceTxt" name="provinceTxt" />
+    <input type="text" class="input" id="provinceTxt" name="provinceTxt" value="{{user.province}}" required/>
   </div>
   <div class="form-field">
     <label for="postalTxt">Postal Code:</label>
-    <input type="text" class="input" id="postalTxt" name="postalTxt" />
+    <input type="text" class="input" id="postalTxt" name="postalTxt" value="{{user.postCode}}" required/>
   </div>
   <div class="form-field">
-    <label for="updateEmailTxt">Email:</label>
-    <input type="text" class="input" id="updateEmailTxt" name="updateEmailTxt" />
+    <label for="emailTxt">Email:</label>
+    <input type="text" class="input" id="emailTxt" name="emailTxt" value="{{user.email}}" required/>
   </div>
   <div class="form-field">
     <label for="phoneTxt">Phone:</label>
-    <input type="text" class="input" id="phoneTxt" name="phoneTxt" />
+    <input type="text" class="input" id="phoneTxt" name="phoneTxt" value="{{user.phone}}" />
   </div>
     <div class="form-actions">
       <button class="btn" type="submit">Update</button>
@@ -43,3 +43,4 @@
   </form>
 </div>
 
+{{/with}}
