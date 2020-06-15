@@ -119,9 +119,9 @@ CREATE TABLE IF NOT EXISTS `pages` (
   `menuOrder` int(2) DEFAULT 1,
   `content` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`pageId`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table amakaren_books.pages: ~6 rows (approximately)
+-- Dumping data for table amakaren_books.pages: ~7 rows (approximately)
 DELETE FROM `pages`;
 /*!40000 ALTER TABLE `pages` DISABLE KEYS */;
 INSERT INTO `pages` (`pageId`, `pageKey`, `title`, `showInMenu`, `menuOrder`, `content`) VALUES
@@ -130,7 +130,8 @@ INSERT INTO `pages` (`pageId`, `pageKey`, `title`, `showInMenu`, `menuOrder`, `c
 	(3, 'account', 'Your Account', 1, 2, '{{> account }}'),
 	(4, 'wishlist', 'Your Wishlist', 1, 3, '{{> wishlist}}'),
 	(5, 'available', 'Your Available Books', 1, 4, '{{> available}}'),
-	(6, 'review', 'Review a Book', 1, 5, '{{> message}}');
+	(6, 'review', 'Review a Book', 1, 5, '{{> message}}'),
+	(7, 'message', 'Send us a Message', 1, 6, NULL);
 /*!40000 ALTER TABLE `pages` ENABLE KEYS */;
 
 -- Dumping structure for table amakaren_books.users
@@ -150,35 +151,33 @@ CREATE TABLE IF NOT EXISTS `users` (
   `passHash` varchar(255) DEFAULT NULL,
   `cookieHash` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table amakaren_books.users: ~22 rows (approximately)
+-- Dumping data for table amakaren_books.users: ~14 rows (approximately)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`userId`, `firstName`, `lastName`, `userName`, `passWord`, `email`, `phone`, `address`, `City`, `province`, `postCode`, `passHash`, `cookieHash`) VALUES
-	(2, 'Amy', 'lewis', 'alewis', '1234', 'amy@gmail.com', 2522, '397 Blvd Cite des Jeunes', 'Gatineau', 'QC', 'J8Y6L4', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
-	(3, 'Peter ', 'Rosato', 'prosato', 'abcd', 'dakota.spor@yahoo.com', 3522, '141 Boulevard du Mont bleu', 'Gatineau', 'QC', 'J8Z1K2', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
-	(4, 'Brianna', 'Hall', 'bhall', '1234', 'b.hall@randatmail.com', 2144, '9 Rue Talbot', 'Gatineau', 'QC', 'J8Z1LB', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
-	(5, 'Adele', 'Rogers', 'arogers', 'abcd', 'a.rogers@randatmail.com', 2355, '63 Rue Lemieux', 'Gatineau', 'QC', 'J8Z1G7', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
-	(6, 'Derek', 'Gray', 'dgray', '1234', 'd.gray@randatmail.com', 5477, '76 Rue Pelletier', 'Gatineau', 'QC', 'J8L1C5', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
-	(7, 'Eric', 'Morgan', 'emorgan', 'abcd', 'e.morgan@randatmail.com', 3554, '369 Boulevard Riel', 'Gatineau', 'QC', 'J8Z1B3', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
-	(8, 'Annabella', 'Henderson', 'ahenderson', '1234', 'a.henderson@randatmail.com', 3223, '320 Rue Francois de Levis', 'Gatineau', 'QC', 'J8Z1A4', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
-	(9, 'Catherine', 'Farrell', 'cfarrell', 'abcd', 'c.farrell@randatmail.com', 5465, '71 Rue d\'Orsonnens', 'Gatineau', 'QC', 'J8Y6H8', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
-	(10, 'Richard', 'Ellis', 'rellis', '1234', 'r.ellis@randatmail.com', 9874, '311 Rue Francois de Levis', 'Gatineau', 'QC', 'J8Z1A3', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
-	(11, 'Vanessa', 'Hunt', 'vhunt', 'abcd', 'v.hunt@randatmail.com', 6545, '4 Rue Alie', 'Gatineau', 'QC', 'J8Z1M9', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
-	(12, 'Michael', 'Nelson', 'mnelson', '1234', 'm.nelson@randatmail.com', 8497, '145 Rue Jolicoeur', 'Gatineau', 'QC', 'J8Z1C8', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
-	(13, 'Dale', 'Mason', 'dmason', 'abcd', 'd.mason@randatmail.com', 9954, '37 Rue Bernier', 'Gatineau', 'QC', 'J8Z1E7', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
-	(14, 'Robert', 'Higgins', 'rhiggins', '1234', 'r.higgins@randatmail.com', 3259, '35 Rue Hinchey', 'Gatineau', 'QC', 'J8Z1H1', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
-	(15, 'Paul', 'Brown', 'pbrown', 'abcd', 'p.brown@randatmail.com', 5412, '86 Rue Boucher', 'Gatineau', 'QC', 'J8Y6G6', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', '$2y$10$ozOQJtvGHfY0X5fpeA1.lu4kmvHWNIOZgl3MC47T6R0H/M4R1R0YS'),
-	(27, NULL, NULL, 'samIam', '456', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(28, NULL, NULL, 'tiny', '321', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(29, NULL, NULL, 'tiny', '321', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(30, NULL, NULL, 'twinkleToes', '123', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(31, NULL, NULL, 'user123', '123', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(32, NULL, NULL, 'hollyGoLightly', 'sunshine', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(33, NULL, NULL, 'hollyGoLightly', '1234', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(34, NULL, NULL, 'dino123', '123', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL),
-	(35, NULL, NULL, 'peterPan', 'abc', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL);
+	(2, 'Amy', 'lewis', 'alewis', '1234', 'amy@gmail.com', 2522, '397 Blvd Cite des Jeunes', 'Gatineau', 'QC', 'J8Y6L4', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
+	(3, 'Peter ', 'Rosato', 'prosato', '1234', 'dakota.spor@yahoo.com', 3522, '141 Boulevard du Mont bleu', 'Gatineau', 'QC', 'J8Z1K2', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
+	(4, 'Brianna', 'Hall', 'bhall', '1234', 'b.hall@randatmail.com', 2144, '9 Rue Talbot', 'Gatineau', 'QC', 'J8Z1LB', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
+	(5, 'Adele', 'Rogers', 'arogers', '1234', 'a.rogers@randatmail.com', 2355, '63 Rue Lemieux', 'Gatineau', 'QC', 'J8Z1G7', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
+	(6, 'Derek', 'Gray', 'dgray', '1234', 'd.gray@randatmail.com', 5477, '76 Rue Pelletier', 'Gatineau', 'QC', 'J8L1C5', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
+	(7, 'Eric', 'Morgan', 'emorgan', '1234', 'e.morgan@randatmail.com', 3554, '369 Boulevard Riel', 'Gatineau', 'QC', 'J8Z1B3', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
+	(8, 'Annabella', 'Henderson', 'ahenderson', '1234', 'a.henderson@randatmail.com', 3223, '320 Rue Francois de Levis', 'Gatineau', 'QC', 'J8Z1A4', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
+	(9, 'Catherine', 'Farrell', 'cfarrell', '1234', 'c.farrell@randatmail.com', 5465, '71 Rue d\'Orsonnens', 'Gatineau', 'QC', 'J8Y6H8', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
+	(10, 'Richard', 'Ellis', 'rellis', '1234', 'r.ellis@randatmail.com', 9874, '311 Rue Francois de Levis', 'Gatineau', 'QC', 'J8Z1A3', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
+	(11, 'Vanessa', 'Hunt', 'vhunt', '1234', 'v.hunt@randatmail.com', 6545, '4 Rue Alie', 'Gatineau', 'QC', 'J8Z1M9', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
+	(12, 'Michael', 'Nelson', 'mnelson', '1234', 'm.nelson@randatmail.com', 8497, '145 Rue Jolicoeur', 'Gatineau', 'QC', 'J8Z1C8', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
+	(13, 'Dale', 'Mason', 'dmason', '1234', 'd.mason@randatmail.com', 9954, '37 Rue Bernier', 'Gatineau', 'QC', 'J8Z1E7', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
+	(14, 'Robert', 'Higgins', 'rhiggins', '1234', 'r.higgins@randatmail.com', 3259, '35 Rue Hinchey', 'Gatineau', 'QC', 'J8Z1H1', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
+	(15, 'Paul', 'Brown', 'pbrown', '1234', 'p.brown@randatmail.com', 2147483647, '86 Rue Boucher', 'Gatineau', 'QC', 'J8Y6G6', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
+	(36, 'Karen', 'Fahey', 'kiki', NULL, 'karen@mail.com', 2147483647, '105 Calumet', 'Shawville', 'QC', 'J0X2Y0', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
+	(37, 'Amaka', 'Obehi', 'amy', NULL, 'amy@mail.com', 2147483647, '547 Cite des Jeunes', 'Gatineau', 'QC', 'J8F3T6', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
+	(41, NULL, NULL, 'foobar', NULL, NULL, NULL, '', NULL, NULL, NULL, 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
+	(42, NULL, NULL, 'tony', NULL, NULL, NULL, '', NULL, NULL, NULL, 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
+	(43, 'Belinda', 'Carlisle', 'bopeep', NULL, 'bopeep@mail.com', 2147483647, '123 Street', 'Ottawa', 'ON', 'K4D5G6', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
+	(44, NULL, NULL, 'figgy', NULL, NULL, NULL, '', NULL, NULL, NULL, 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
+	(45, 'Timothy', 'Findlay', 'tinytim', NULL, 'tt@mail.com', 0, '890 Front Ave.', 'Gatineau', 'QC', 'J9X1F5', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s=');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Dumping structure for table amakaren_books.wishlist
