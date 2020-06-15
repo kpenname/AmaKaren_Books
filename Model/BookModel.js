@@ -1,15 +1,20 @@
 const db = require("../config/database");
 
-module.exports = class {
-  static async getBooks(userId) {
-    let connection = await db.getConnection();
-    const rows = await connection.query(
-      "SELECT * FROM `books` WHERE `userId` = ? ",
-      [userId]
-    );
+module.exports = {
+  getBooks: async function (userId) {
+    let userId = req.body.userId;
+    let conn = await db.getConnection();
+    const rows = await conn.query("SELECT * FROM books WHERE userId = ?", [
+      userId,
+    ]);
+    conn.end();
+
     if (rows.length > 0) {
-      return { usbooker: rows[0] };
+      for (let i = 0; i < rows.length; i++) {
+        return { books: rows[i] };
+      }
+    } else {
+      return null;
     }
-    return { book: null };
-  }
+  },
 };

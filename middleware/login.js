@@ -5,6 +5,7 @@ module.exports = async (req, res, next) => {
   if (req.query.logout !== undefined) {
     res.clearCookie("user");
     res.clearCookie("chash");
+    res.redirect("/home");
     res.user = { auth: false };
   } else {
     if (req.body.username !== undefined && req.body.password !== undefined) {

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const db = require("../config/database");
 const User = require("../Model/UserModel");
+const Book = require("../Model/BookModel");
 const crypto = require("crypto");
 
 router.post("/addUser", async (req, res, next) => {
@@ -36,7 +37,6 @@ router.post("/addUser", async (req, res, next) => {
       res.cookie("chash", chash, {
         maxAge: 1000 * 60 * 60 * 12,
       });
-
       return res.redirect("/account");
     } else {
       next();
@@ -64,6 +64,40 @@ router.post("/update", async (req, res, next) => {
     conn.end();
     console.log(req.user.user);
     return res.redirect("/home");
+  } else {
+    next();
+  }
+});
+
+router.get("/viewWishlist", async (req, res, next) => {
+  if (req.user !== undefined) {
+    let userId = req.user.user.userId;
+    let conn = await db.getConnection();
+    const row = await conn.query("SELECT * FROM books WHERE userId = ?;", [
+      userId,
+    ]);
+    conn.end();
+    let bookList = await Book.getBooks(userId);
+    return bookList;
+  } else {
+    next();
+  }
+});
+router.post("/updateWishlist", async (req, res, next) => {
+  if (req.user !== undefined) {
+    let title = req.body.title.trim();
+    let author = req.body.author.trim();
+    let genre = req.body.genre.trim();
+    let yearPub = req.body.yearPub.trim();
+    let pages = req.body.pages.trim();
+    let available = req.body.available.trim();
+    let userId = req.user.user.userId;
+    let conn = await db.getConnection();
+    const row = await conn.query(
+      "UPDATE books SET title = ?, author = ?, genre = ?, yearPub = ?, pages = ?, available = ? WHERE userId = ?;",
+      [title, author, genre, yearPub, pages, available, userId]
+    );
+    conn.end();
   } else {
     next();
   }
