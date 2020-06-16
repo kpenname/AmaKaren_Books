@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const accountRouter = require("./routes/accountRoute");
 const pageRoute = require("./routes/pageRoute");
+const User = require("./Model/UserModel");
 const hbs = require("hbs");
 
 const app = express();

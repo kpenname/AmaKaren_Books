@@ -104,4 +104,21 @@ router.post("/addAvailable", async (req, res, next) => {
   }
 });
 
+router.post("/addWishlist", async (req, res, next) => {
+  if (req.user !== undefined) {
+    let title = req.body.txtWishlistTitle.trim();
+    let author = req.body.txtWishlistAuthor.trim();
+    let userId = req.user.user.userId;
+    let conn = await db.getConnection();
+    const row = await conn.query(
+      "INSERT INTO wishlist (userId, title, author) VALUES (?, ?, ?);",
+      [userId, title, author]
+    );
+    conn.end();
+    return res.redirect("/wishlist");
+  } else {
+    next();
+  }
+});
+
 module.exports = router;

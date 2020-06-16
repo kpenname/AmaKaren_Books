@@ -53,67 +53,42 @@ function showCreateAccount() {
 // I took the map out of the page load because we don't always want the map on the page.
 // I want to be able to call this function when it's needed.
 
-function displayMap() {
-  map = new mapboxgl.Map({
-    container: "map",
-    style: "mapbox://styles/penname/ckav7dgfc3ahh1iqk14lkdzez",
-    center: [-75.747, 45.455],
-    zoom: 12,
-  });
+// markers.push(
+//   new mapboxgl.Marker().setLngLat([ottawaLng, ottawaLat]).addTo(map)
+// );
+// $.ajax({
+//   url: "http://localhost:9000/getUsers",
+//   method: "GET",
+//   success: function (response) {
+//     // console.log(response[0]);
+//     // console.log(response[0].firstName);
+//     // console.log(response[0].lastName);
+//     console.log(response[0].postCode);
+//     // console.log(response[0].address);
 
-  markers.push(
-    new mapboxgl.Marker().setLngLat([ottawaLng, ottawaLat]).addTo(map)
-  );
-  $.ajax({
-    url: "http://localhost:9000/getUsers",
-    method: "GET",
-    success: function (response) {
-      // console.log(response[0]);
-      // console.log(response[0].firstName);
-      // console.log(response[0].lastName);
-      console.log(response[0].postCode);
-      // console.log(response[0].address);
-
-      if (response.length > 0) {
-        for (let index = 0; index < response.length; index++) {
-          var newRow = $("<tr>");
-          var cols = "";
-          var firstname = "";
-          var lastname = "";
-          var postcode = response[index].postCode;
-          $.ajax({
-            url:
-              "http://localhost:9000/geocoding?postcode=" +
-              response[index].postCode,
-            method: "GET",
-            success: function (response2) {
-              console.log(response2.latt); //undefined
-              console.log(response2.longt); //undefined
-              const marker = new mapboxgl.Marker()
-                .setLngLat([response2.longt, response2.latt])
-                .addTo(map);
-              markers.push(marker);
-            },
-          });
-          cols += "<td> " + response[index].firstName + "</td>";
-          cols += "<td> " + response[index].lastName + "</td>";
-          cols += "<td> " + response[index].postCode + "</td>";
-          newRow.append(cols);
-          $("#tableData .tbody").append(newRow);
-        }
-      }
-    },
-  });
-
-  let showMap = document.getElementById("map");
-  showMap.style.visibility = "visible";
-  showMap.style.position = "fixed";
-  showMap.style.height = "70vh";
-
-  map.on("load", () => {
-    map.resize();
-  });
-}
+//     if (response.length > 0) {
+//       for (let index = 0; index < response.length; index++) {
+//         var newRow = $("<tr>");
+//         var cols = "";
+//         var firstname = "";
+//         var lastname = "";
+//         var postcode = response[index].postCode;
+//         $.ajax({
+//           url: "/geocoding?postcode=" + response[index].postCode,
+//           method: "GET",
+//           success: function (response2) {
+//             console.log(response2.latt); //undefined
+//             console.log(response2.longt); //undefined
+//             const marker = new mapboxgl.Marker()
+//               .setLngLat([response2.longt, response2.latt])
+//               .addTo(map);
+//             markers.push(marker);
+//           },
+//         });
+//       }
+//     }
+//   },
+// });
 
 function getBookList() {
   let bookLookUp = document.getElementById("bookLookUp");

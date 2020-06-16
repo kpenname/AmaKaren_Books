@@ -77,14 +77,14 @@ footer {
 div#div_map {
   width: 100%;
   height: 70vh;
-  position: fixed;
+  position: inherit;
   text-align: center;
   display: inline-block;
 }
 #map {
   height: 70vh;
-  width: 50%;
-  border: 2px solid rgb(62, 95, 126);
+  width: 70vh;
+  /* border: 2px solid rgb(62, 95, 126); */
   right: 20px;
   top: 20px;
 }

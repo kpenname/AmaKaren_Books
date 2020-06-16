@@ -82,4 +82,13 @@ module.exports = {
     }
     return { userId: null };
   },
+  getAllUserInfo: async function () {
+    let connection = await db.getConnection();
+    let users = [];
+    const rows = await connection.query("SELECT * FROM users;");
+    if (rows.affectedRows > 0) {
+      return users;
+    }
+    return;
+  },
 };

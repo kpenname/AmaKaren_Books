@@ -1,56 +1,5 @@
 <h2>Your Wishlist</h2>
 
-<div id="map"></div>
-
-
-<div class="form-header">
-    <h3 id="availableHeading">Add to your wishlist</h3>
-</div>
-<div id="addAvailable" style="visibility: hidden; height: 0;">
-    <form name="addAvailable" action="/account/addAvailable" method="POST" class="form" enctype="application/x-www-form-urlencoded" id="addAvailable">
-        <input type="text" class="input" id="txtAvailableTitle" name="txtAvailableTitle" placeholder="Title" required />
-        <input type="text" class="input" id="txtAvailableAuthor" name="txtAvailableAuthor" placeholder="Author" required />
-        <select id="genreList" name="genreList" form="addAvailable">
-            <option value="Action">Action</option>
-            <option value="Romance">Romance</option>
-            <option value="Horror">Horror</option>
-            <option value="Crime">Crime</option>
-            <option value="Fantasy">Fantasy</option>
-            <option value="Scifi">SciFi</option>
-            <option value="Poetry">Poetry</option>
-            <option value="Drama">Drama</option>
-            <option value="Children">Children</option>
-        </select>
-        <input type="text" class="input" id="txtYearPub" name="txtYearPub" placeholder="Year published" required />
-        <input type="text" class="input" id="txtPages" name="txtPages" placeholder="Number of pages" required />
-        <label for="checkAvailable">Is available </label>
-        <input type="checkbox" class="input" id="checkAvailable" name="checkAvailable" />
-        <button id="createAccount" class="btn" type="submit">Add this book</button>
-    </form>
-</div>
-
-<h4 id="availableHeading">Show books in your area</h4>
-<script>
-displayMap();
-</script>
-<script>
-  let availableHeading = document.getElementById("availableHeading");
-  availableHeading.addEventListener("click", showAddAvailable);
-  availableHeading.style.cursor = "pointer";
-
-  function showAddAvailable() {
-  let addAvailable = document.getElementById("addAvailable");
-  if (addAvailable.style.visibility === "hidden") {
-    addAvailable.style.visibility = "visible";
-    addAvailable.style.height = "100%";
-  } else {
-    addAvailable.style.visibility = "hidden";
-    addAvailable.style.height = "0";
-  }
-}
-</script>
-
-
 
 <p>The books in your wishlist:</p>   
 {{#each wishlist}}
@@ -59,5 +8,51 @@ displayMap();
     </div>
 {{/each}} 
 <br/>
-<p></p>
+
+<div class="form-header">
+    <h3 id="wishlistHeading">Add to your wishlist</h3>
+</div>
+<div id="addWishlist" style="visibility: hidden; height: 0;">
+    <form name="addWishlist" action="/account/addWishlist" method="POST" class="form" enctype="application/x-www-form-urlencoded" id="addWishlist">
+        <input type="text" class="input" id="txtWishlistTitle" name="txtWishlistTitle" placeholder="Title" required />
+        <input type="text" class="input" id="txtWishlistAuthor" name="txtWishlistAuthor" placeholder="Author" required />       
+        
+        <button class="btn" type="submit">Add this book</button>
+    </form>
+</div>
+
+<h4 id="showBooksHeading">Show books in your area</h4>
+<div id="map"></div>
+
+<script>
+  let wishlistHeading = document.getElementById("wishlistHeading");
+  wishlistHeading.addEventListener("click", showAddWishlist);
+  wishlistHeading.style.cursor = "pointer";
+
+  function showAddWishlist() {
+  let addWishlist = document.getElementById("addWishlist");
+  if (addWishlist.style.visibility === "hidden") {
+    addWishlist.style.visibility = "visible";
+    addWishlist.style.height = "100%";
+  } else {
+    addWishlist.style.visibility = "hidden";
+    addWishlist.style.height = "0";
+  }
+}
+
+function displayMap() {
+  map = new mapboxgl.Map({
+    container: "map",
+    style: "mapbox://styles/penname/ckav7dgfc3ahh1iqk14lkdzez",
+    center: [-75.747, 45.455],
+    zoom: 12,
+  });
+  
+
+  map.on("load", () => {
+    map.resize();
+  });
+}
+displayMap();
+</script>
 

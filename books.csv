@@ -1,0 +1,26 @@
+bookId,userId,title,author,genre,yearPub,pages,available
+5,2,Pride and Prejudice,Jane Austen ,Drama,1994,261,on
+6,2,To Kill a Mockingbird,Harper Lee ,Action,2001,183,on
+7,5,Harry Potter and the Order of the Phoenix,J.K. Rowling ,Horror,2002,241,on
+8,5, The Hunger Games,Suzanne Collins ,Action,2018,184,on
+9,9,The Book Thief,Markus Zusak,Drama,2011,201,on
+10,9,Gone with the Wind,Margaret Mitchell ,Romance,2009,263,on
+11,8,The Fault in Our Stars,John Green,SciFi,2019,145,on
+12,8,The Giving Tree,Shel Silverstein ,Poetry,2012,195,on
+14,4,The Hitchhiker's Guide to the Galaxy ,Douglas Adams ,Fantasy,2014,231,on
+15,4,Memoirs of a Geisha,Arthur Golden ,Romance,2016,139,on
+16,13,Alice's Adventures in Wonderland ,Lewis Carroll ,Children,2003,141,on
+17,13,Jane Eyre,Charlotte Brontë ,Children,2005,265,on
+18,7,Les Misérables,Victor Hugo ,Fantasy,2013,182,on
+19,7,Divergent ,Veronica Roth ,Horror,2003,185,on
+20,6,The Grapes of Wrath,John Steinbeck,Action,2015,201,on
+21,6,Lord of the Flies,William Golding ,Horror,1998,174,on
+22,12,Animal Farm,George Orwell,Drama,1996,193,on
+23,15,The Story of Ferdinand,Munro Leaf,Children,1936,32,on
+24,15,The Long Earth,Terry Pratchett,SciFi,2010,475,on
+25,3,Crime and Punishment,Fyodor Dostoyevsky,Crime,1999,204,on
+26,10,Slaughterhouse-Five,Kurt Vonnegut Jr. ,Fantasy,2007,167,on
+27,14,The Adventures of Huckleberry Finn,Mark Twain,Drama,2001,181,on
+28,11,Great Expectations ,Charles Dickens,Fantasy,1991,153,on
+29,10,The Stranger,Albert Camus ,Drama,2003,167,on
+30,15,The Long War,Stephen Baxter,\N,2011,478,on
