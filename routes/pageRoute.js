@@ -22,11 +22,17 @@ async function getPageWithDefault(req, res) {
     user: req.user,
   };
 
-  if (req.params.key === "wishlist" && req.user.auth) {
+  if (req.params.key === "available" && req.user.auth) {
     let books = await bookModel.getBooks(req.user.user.userId);
     data.books = books;
   }
-  console.log(data);
+
+  if (req.params.key === "wishlist" && req.user.auth) {
+    let wishlist = await bookModel.getWishlist(req.user.user.userId);
+    data.wishlist = wishlist;
+  }
+
+  //console.log(data);
   if (page[0] !== undefined) {
     res.render(req.params.key, data);
   } else {

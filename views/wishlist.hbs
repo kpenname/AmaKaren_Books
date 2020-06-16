@@ -1,23 +1,63 @@
+<h2>Your Wishlist</h2>
 
-<h2>This is your wishlist page</h2>
-<br/>
-<hr>
-    
-  {{#each books}}
-    <div>
-      <p>{{title}} by: {{author}}</p>    
-    </div>
-      {{/each}} 
+<div id="map"></div>
 
 
-<p id="showMap">Find books in your area.</p>
-
-<div id="map">
-    {{! this is where the map can go.  We should see the markers for the books on the wishlist.  
-    Yes, I know that's easier said than done. ;) }}
+<div class="form-header">
+    <h3 id="availableHeading">Add to your wishlist</h3>
+</div>
+<div id="addAvailable" style="visibility: hidden; height: 0;">
+    <form name="addAvailable" action="/account/addAvailable" method="POST" class="form" enctype="application/x-www-form-urlencoded" id="addAvailable">
+        <input type="text" class="input" id="txtAvailableTitle" name="txtAvailableTitle" placeholder="Title" required />
+        <input type="text" class="input" id="txtAvailableAuthor" name="txtAvailableAuthor" placeholder="Author" required />
+        <select id="genreList" name="genreList" form="addAvailable">
+            <option value="Action">Action</option>
+            <option value="Romance">Romance</option>
+            <option value="Horror">Horror</option>
+            <option value="Crime">Crime</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Scifi">SciFi</option>
+            <option value="Poetry">Poetry</option>
+            <option value="Drama">Drama</option>
+            <option value="Children">Children</option>
+        </select>
+        <input type="text" class="input" id="txtYearPub" name="txtYearPub" placeholder="Year published" required />
+        <input type="text" class="input" id="txtPages" name="txtPages" placeholder="Number of pages" required />
+        <label for="checkAvailable">Is available </label>
+        <input type="checkbox" class="input" id="checkAvailable" name="checkAvailable" />
+        <button id="createAccount" class="btn" type="submit">Add this book</button>
+    </form>
 </div>
 
+<h4 id="availableHeading">Show books in your area</h4>
 <script>
 displayMap();
-
 </script>
+<script>
+  let availableHeading = document.getElementById("availableHeading");
+  availableHeading.addEventListener("click", showAddAvailable);
+  availableHeading.style.cursor = "pointer";
+
+  function showAddAvailable() {
+  let addAvailable = document.getElementById("addAvailable");
+  if (addAvailable.style.visibility === "hidden") {
+    addAvailable.style.visibility = "visible";
+    addAvailable.style.height = "100%";
+  } else {
+    addAvailable.style.visibility = "hidden";
+    addAvailable.style.height = "0";
+  }
+}
+</script>
+
+
+
+<p>The books in your wishlist:</p>   
+{{#each wishlist}}
+    <div>
+        <p>{{title}} by: {{author}}</p>    
+    </div>
+{{/each}} 
+<br/>
+<p></p>
+

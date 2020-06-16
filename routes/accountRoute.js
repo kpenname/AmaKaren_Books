@@ -69,7 +69,7 @@ router.post("/update", async (req, res, next) => {
   }
 });
 
-router.get("/viewWishlist", async (req, res, next) => {
+router.get("/viewAvailable", async (req, res, next) => {
   if (req.user !== undefined) {
     let userId = req.user.user.userId;
     let conn = await db.getConnection();
@@ -83,21 +83,22 @@ router.get("/viewWishlist", async (req, res, next) => {
     next();
   }
 });
-router.post("/updateWishlist", async (req, res, next) => {
+router.post("/addAvailable", async (req, res, next) => {
   if (req.user !== undefined) {
-    let title = req.body.title.trim();
-    let author = req.body.author.trim();
-    let genre = req.body.genre.trim();
-    let yearPub = req.body.yearPub.trim();
-    let pages = req.body.pages.trim();
-    let available = req.body.available.trim();
+    let title = req.body.txtAvailableTitle.trim();
+    let author = req.body.txtAvailableAuthor.trim();
+    //let genre = req.body.genreList;
+    let yearPub = req.body.txtYearPub.trim();
+    let pages = req.body.txtPages.trim();
+    let available = req.body.checkAvailable;
     let userId = req.user.user.userId;
     let conn = await db.getConnection();
     const row = await conn.query(
-      "UPDATE books SET title = ?, author = ?, genre = ?, yearPub = ?, pages = ?, available = ? WHERE userId = ?;",
-      [title, author, genre, yearPub, pages, available, userId]
+      "INSERT INTO books (userId, title, author, yearPub, pages, available) VALUES (?, ?, ?, ?, ?, ?);",
+      [userId, title, author, yearPub, pages, available]
     );
     conn.end();
+    return res.redirect("/available");
   } else {
     next();
   }
