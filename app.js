@@ -38,20 +38,21 @@ app.use("/resourses", express.static(path.join(__dirname, "public")));
 // It is just a way to access other resources by calling the endpoint "/resourses/something"
 // this is used in layout.hbs when calling style.css, images, and main.js
 
-app.get("/geocoding", async (req, res) => {
-  let postcode = req.param.postcode;
-  let urlstring =
-    "https://geocoder.ca/?locate=" + postcode + "&geoit=XML&json=1";
+app.get("/geocoding/:pc", async (req, res) => {
+  let pc = req.params.pc;
+  //console.log(pc);
+  let urlstring = "https://geocoder.ca/?locate=" + pc + "&geoit=XML&json=1";
   let userLocation = await axios.get(urlstring);
+  //console.log(userLocation.data.longt);
   res.json(userLocation.data);
 });
 
-app.get("/getUsers/", async (req, res) => {
-  // this endpoint now calls the user model
-  let users = await User.getAllUserInfo(); // User is like an object with methods
-  // I am calling getAllUserInfo from the model.  That is where the sql is.
-  res.json(users);
-});
+// app.get("/getUsers/", async (req, res) => {
+//   // this endpoint now calls the user model
+//   let users = await User.getAllUserInfo(); // User is like an object with methods
+//   // I am calling getAllUserInfo from the model.  That is where the sql is.
+//   res.json(users);
+// });
 
 app.post("/message/", async (req, res) => {
   let message = await Message.sendMessage();

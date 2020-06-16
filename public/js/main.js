@@ -22,12 +22,6 @@ window.addEventListener("load", async (e) => {
 
 // ************ end of window load *************//
 
-function showMsgForm() {
-  let msg = document.getElementById("msg");
-  msg.style.visibility = "visible";
-  msg.style.height = "100%";
-}
-
 function showLoginForm() {
   let loginForm = document.getElementById("loginForm");
   if (loginForm.style.visibility === "hidden") {
@@ -89,9 +83,3 @@ function showCreateAccount() {
 //     }
 //   },
 // });
-
-function getBookList() {
-  let bookLookUp = document.getElementById("bookLookUp");
-  bookLookUp.style.visibility = "visible";
-  bookLookUp.style.height = "100%";
-}

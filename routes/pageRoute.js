@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const pageModel = require("../Model/PageModel");
 const bookModel = require("../Model/BookModel");
+const UserModel = require("../Model/UserModel");
 
 router.all("/", async (req, res) => {
   getPageWithDefault(req, res);
@@ -32,7 +33,6 @@ async function getPageWithDefault(req, res) {
     data.wishlist = wishlist;
   }
 
-  //console.log(data);
   if (page[0] !== undefined) {
     res.render(req.params.key, data);
   } else {

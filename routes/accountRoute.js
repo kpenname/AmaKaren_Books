@@ -83,6 +83,7 @@ router.get("/viewAvailable", async (req, res, next) => {
     next();
   }
 });
+
 router.post("/addAvailable", async (req, res, next) => {
   if (req.user !== undefined) {
     let title = req.body.txtAvailableTitle.trim();
@@ -116,6 +117,22 @@ router.post("/addWishlist", async (req, res, next) => {
     );
     conn.end();
     return res.redirect("/wishlist");
+  } else {
+    next();
+  }
+});
+
+router.get("/getPostalCode", async (req, res, next) => {
+  if (req.user !== undefined) {
+    let conn = await db.getConnection();
+    let userId = req.user.user.userId;
+    const code = await conn.query(
+      "SELECT postCode FROM users WHERE userId = ?;",
+      [userId]
+    );
+    conn.end();
+
+    res.json(code);
   } else {
     next();
   }

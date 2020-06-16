@@ -82,6 +82,7 @@ module.exports = {
     }
     return { userId: null };
   },
+
   getAllUserInfo: async function () {
     let connection = await db.getConnection();
     let users = [];

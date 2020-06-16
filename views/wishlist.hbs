@@ -1,9 +1,8 @@
 <h2>Your Wishlist</h2>
 
-
 <p>The books in your wishlist:</p>   
 {{#each wishlist}}
-    <div>
+    <div>        
         <p>{{title}} by: {{author}}</p>    
     </div>
 {{/each}} 
@@ -21,25 +20,24 @@
     </form>
 </div>
 
-<h4 id="showBooksHeading">Show books in your area</h4>
 <div id="map"></div>
 
 <script>
-  let wishlistHeading = document.getElementById("wishlistHeading");
-  wishlistHeading.addEventListener("click", showAddWishlist);
-  wishlistHeading.style.cursor = "pointer";
+    let wishlistHeading = document.getElementById("wishlistHeading");
+    wishlistHeading.addEventListener("click", showAddWishlist);
+    wishlistHeading.style.cursor = "pointer";
 
-  function showAddWishlist() {
-  let addWishlist = document.getElementById("addWishlist");
-  if (addWishlist.style.visibility === "hidden") {
-    addWishlist.style.visibility = "visible";
-    addWishlist.style.height = "100%";
-  } else {
-    addWishlist.style.visibility = "hidden";
-    addWishlist.style.height = "0";
-  }
-}
-
+    function showAddWishlist() {
+        let addWishlist = document.getElementById("addWishlist");
+        if (addWishlist.style.visibility === "hidden") {
+            addWishlist.style.visibility = "visible";
+            addWishlist.style.height = "100%";
+        } else {
+            addWishlist.style.visibility = "hidden";
+            addWishlist.style.height = "0";
+        }
+    }
+ 
 function displayMap() {
   map = new mapboxgl.Map({
     container: "map",
@@ -47,12 +45,40 @@ function displayMap() {
     center: [-75.747, 45.455],
     zoom: 12,
   });
-  
 
   map.on("load", () => {
     map.resize();
-  });
+  });  
+}
+
+useCoordinates();
+
+async function getPostalCode () {   
+    let res = await fetch("/account/getPostalCode");
+    let code = await res.json();
+    let userPostalCode = code[0].postCode;
+    return userPostalCode;
+}
+async function getGeoLocationWithPostalCode (){    
+    let pc = await getPostalCode();
+    let longLat=[];
+    try {
+        let res = await fetch("/geoCoding/" + pc);
+        let coordinates = await res.json();
+        longLat.push(coordinates.longt);
+        longLat.push(coordinates.latt);
+
+        return longLat;
+
+    }catch (err) {
+        console.log(err);
+    }    
+}
+async function useCoordinates(){
+    let lnglat = await getGeoLocationWithPostalCode();
+    let userMarker = new mapboxgl.Marker().setLngLat([lnglat[0], lnglat[1]]).addTo(map);    
 }
 displayMap();
+
 </script>
 
