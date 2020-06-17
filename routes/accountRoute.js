@@ -75,12 +75,16 @@ router.post("/addReview", async (req, res, next) => {
     let ratingText = req.body.txtReviewRating.trim();
     let rating = parseInt(ratingText);
     if (rating <= 0) {
-      rating === "1";
+      rating = "1";
     } else if (rating > 5) {
-      rating === "5";
+      rating = "5";
     }
+    console.log(rating);
     let rateText = rating.toString();
     let recommend = req.body.txtReviewCheck;
+    if (recommend === undefined) {
+      recommend = "off";
+    }
 
     let userId = req.user.user.userId;
     let conn = await db.getConnection();
