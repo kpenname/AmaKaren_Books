@@ -98,19 +98,20 @@ INSERT INTO `books` (`bookId`, `userId`, `title`, `author`, `genre`, `yearPub`, 
 DROP TABLE IF EXISTS `message`;
 CREATE TABLE IF NOT EXISTS `message` (
   `messageId` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `message` varchar(255) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
+  `userId` int(11) NOT NULL DEFAULT 0,
+  `messageText` varchar(255) DEFAULT NULL,
   `dateSent` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`messageId`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table amakaren_books.message: ~3 rows (approximately)
 DELETE FROM `message`;
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
-INSERT INTO `message` (`messageId`, `message`, `email`, `dateSent`) VALUES
-	(1, 'I really love this site!', 'kiki@mail.com', '2020-06-08 17:01:49'),
-	(8, 'Great', 'kiki@mail.com', '2020-06-08 17:52:35'),
-	(9, 'I think this is really great!', 'mailer@mail.com', '2020-06-08 20:43:55');
+INSERT INTO `message` (`messageId`, `userId`, `messageText`, `dateSent`) VALUES
+	(1, 5, 'I really love this site!', '2020-06-17 08:08:29'),
+	(8, 16, 'Great', '2020-06-17 08:08:46'),
+	(9, 8, 'I think this is really great!', '2020-06-17 08:08:38'),
+	(10, 8, 'Is this thing working yet, and still I wonder...', '2020-06-17 08:43:06');
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
 
 -- Dumping structure for table amakaren_books.pages
@@ -167,7 +168,7 @@ INSERT INTO `users` (`userId`, `firstName`, `lastName`, `userName`, `passWord`, 
 	(5, 'Adele', 'Rogers', 'arogers', '1234', 'a.rogers@randatmail.com', '2355', '63 Rue Lemieux', 'Gatineau', 'QC', 'J8Z1G7', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
 	(6, 'Derek', 'Gray', 'dgray', '1234', 'd.gray@randatmail.com', '2147483647', '76 Rue Pelletier', 'Gatineau', 'QC', 'J8Y 5Y3', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
 	(7, 'Eric', 'Morgan', 'emorgan', '1234', 'e.morgan@randatmail.com', '3554', '369 Boulevard Riel', 'Gatineau', 'QC', 'J8Z1B3', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
-	(8, 'Annabella', 'Henderson', 'ahenderson', '1234', 'a.henderson@randatmail.com', '3223', '320 Rue Francois de Levis', 'Gatineau', 'QC', 'J8Z1A4', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
+	(8, 'Annabella', 'Henderson', 'ahenderson', '1234', 'a.henderson@randatmail.com', '8197450326', '320 Rue Francois de Levis', 'Gatineau', 'QC', 'J8Z1A4', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
 	(9, 'Catherine', 'Farrell', 'cfarrell', '1234', 'c.farrell@randatmail.com', '5465', '71 Rue d\'Orsonnens', 'Gatineau', 'QC', 'J8Y6H8', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
 	(10, 'Richard', 'Ellis', 'rellis', '1234', 'r.ellis@randatmail.com', '9874', '311 Rue Francois de Levis', 'Gatineau', 'QC', 'J8Z1A3', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
 	(11, 'Vanessa', 'Hunt', 'vhunt', '1234', 'v.hunt@randatmail.com', '6545', '4 Rue Alie', 'Gatineau', 'QC', 'J8Z1M9', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
@@ -175,7 +176,7 @@ INSERT INTO `users` (`userId`, `firstName`, `lastName`, `userName`, `passWord`, 
 	(13, 'Dale', 'Mason', 'dmason', '1234', 'd.mason@randatmail.com', '9954', '37 Rue Bernier', 'Gatineau', 'QC', 'J8Z1E7', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
 	(14, 'Robert', 'Higgins', 'rhiggins', '1234', 'r.higgins@randatmail.com', '3259', '35 Rue Hinchey', 'Gatineau', 'QC', 'J8Z1H1', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
 	(15, 'Paul', 'Brown', 'pbrown', '1234', 'p.brown@randatmail.com', '2147483647', '86 Rue Boucher', 'Gatineau', 'QC', 'J8Y6G6', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
-	(36, 'Karen', 'Fahey', 'kiki', NULL, 'karen@mail.com', '2147483647', '105 Calumet', 'Shawville', 'QC', 'J0X2Y0', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
+	(36, 'Karen', 'Fahey', 'kiki', NULL, 'karen@mail.com', '8197451236', '105 Calumet', 'Shawville', 'QC', 'J0X2Y0', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
 	(37, 'Amaka', 'Obehi', 'amy', NULL, 'amy@mail.com', '2147483647', '547 Cite des Jeunes', 'Gatineau', 'QC', 'J8F3T6', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
 	(41, NULL, NULL, 'foobar', NULL, NULL, NULL, '', NULL, NULL, NULL, 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
 	(42, NULL, NULL, 'tony', NULL, NULL, NULL, '', NULL, NULL, NULL, 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
@@ -195,9 +196,9 @@ CREATE TABLE IF NOT EXISTS `wishlist` (
   PRIMARY KEY (`wishlistId`),
   KEY `wishlist_userId` (`userId`),
   CONSTRAINT `wishlist_userId` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table amakaren_books.wishlist: ~28 rows (approximately)
+-- Dumping data for table amakaren_books.wishlist: ~29 rows (approximately)
 DELETE FROM `wishlist`;
 /*!40000 ALTER TABLE `wishlist` DISABLE KEYS */;
 INSERT INTO `wishlist` (`wishlistId`, `userId`, `title`, `author`) VALUES
@@ -228,7 +229,8 @@ INSERT INTO `wishlist` (`wishlistId`, `userId`, `title`, `author`) VALUES
 	(25, 37, 'The Lies That Bind', 'Emily Giffin'),
 	(26, 37, 'Fair Warning', 'Michael Connelly'),
 	(27, 8, 'Hideaway', 'Nora Roberts'),
-	(28, 8, 'If it Bleeds', 'Stephen King');
+	(28, 8, 'If it Bleeds', 'Stephen King'),
+	(29, 4, 'Sunshine', 'Theo Popular');
 /*!40000 ALTER TABLE `wishlist` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
