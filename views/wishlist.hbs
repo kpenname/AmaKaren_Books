@@ -1,28 +1,37 @@
-<h2>Your Wishlist</h2>
-
-<p>The books in your wishlist:</p>   
-{{#each wishlist}}
-    <div>        
-        <p>{{title}} by: {{author}}</p>    
+<div class="page-body" id="wishlist-page">
+    <h2>Your Wishlist</h2>
+    
+    <div>    
+        {{#each wishlist}}
+            {{#if title}} 
+                <p>{{title}} by: {{author}}</p>                
+            {{/if}}
+            {{else}}
+                <p>You don't have any books in your wishlist yet.</p>
+        {{/each}}
     </div>
-{{/each}} 
-<br/>
 
-<div class="form-header">
-    <h3 id="wishlistHeading">Add to your wishlist</h3>
-</div>
-<div id="addWishlist" style="visibility: hidden; height: 0;">
-    <form name="addWishlist" action="/account/addWishlist" method="POST" class="form" enctype="application/x-www-form-urlencoded" id="addWishlist">
-        <input type="text" class="input" id="txtWishlistTitle" name="txtWishlistTitle" placeholder="Title" required />
-        <input type="text" class="input" id="txtWishlistAuthor" name="txtWishlistAuthor" placeholder="Author" required />       
-        
-        <button class="btn" type="submit">Add this book</button>
-    </form>
+    <div class="form-header">
+        <h3 id="wishlistHeading">Add to your wishlist</h3>
+    </div>
+    <div id="addWishlist" style="visibility: hidden; height: 0;">
+        <form name="addWishlist" action="/account/addWishlist" method="POST" class="form" enctype="application/x-www-form-urlencoded" id="addWishlist">
+            <input type="text" class="input" id="txtWishlistTitle" name="txtWishlistTitle" placeholder="Title" required />
+            <input type="text" class="input" id="txtWishlistAuthor" name="txtWishlistAuthor" placeholder="Author" required />       
+            
+            <button class="btn" type="submit">Add this book</button>
+        </form>
+    </div>
+
+    <div id="map"></div>
 </div>
 
-<div id="map"></div>
 
 <script>
+mapboxgl.accessToken =
+  "pk.eyJ1IjoicGVubmFtZSIsImEiOiJja2EyaW5taXUwMmFyM2VvNmNuempvMThlIn0.0DFa51G5_9CQxGn1okW6hA";
+let map;
+
     let wishlistHeading = document.getElementById("wishlistHeading");
     wishlistHeading.addEventListener("click", showAddWishlist);
     wishlistHeading.style.cursor = "pointer";
@@ -38,7 +47,7 @@
         }
     }
  
-function displayMap() {
+function displayMap() {  
   map = new mapboxgl.Map({
     container: "map",
     style: "mapbox://styles/penname/ckav7dgfc3ahh1iqk14lkdzez",
@@ -79,6 +88,4 @@ async function useCoordinates(){
     let userMarker = new mapboxgl.Marker().setLngLat([lnglat[0], lnglat[1]]).addTo(map);    
 }
 displayMap();
-
 </script>
-

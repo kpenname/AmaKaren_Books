@@ -1,1 +1,17 @@
-<h2>This is the review page</h2>
+<div class="page-body" id="review-page">
+    <h2>Book Reviews</h2>
+
+    <div>    
+        {{#each review}}
+            {{#if title}} 
+                <p>You said:</p>
+                <p>{{title}} by: {{author}}</p>
+                <p>{{reviewText}}</p>
+                <p>Your rating: {{rating}}</p>
+                <p>Do you recommend this book? {{recommended}}</p>
+            {{/if}}
+            {{else}}
+            <p>You haven't reviewed any books yet.</p>
+        {{/each}}
+    </div>
+</div>

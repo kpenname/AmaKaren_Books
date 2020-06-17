@@ -1,21 +1,18 @@
-<h2>This is the message page</h2>
+<div class="page-body" id="message-page">
 
-<div class="form-header">
-    <h2 id="sendMsg">Send us a message</h2>
-</div>
-<div id="msg" style="visibility: hidden; height: 0;">
-    <form action="/message/" method="POST" class="form">
-        <div class="form-field">
-            <label for="message">Message</label>
-            <textarea class="input" id="message" name="msgText" rows="4" autofocus ></textarea>
-        </div>
-        <div class="form-field">
-            <label for="email">Email</label>
-            <input class="input" id="email" name="emailText" type="email" />
-        </div>
-        <div class="form-actions">
-            <button class="btn" type="submit">Send</button>
-        </div>
-    </form>
-</div>
+    <div class="form-header">
+        <h2 id="sendMsg">Send us a message</h2>
+    </div>
+    <div id="msg" >
+        <form action="/account/sendMessage/" method="POST" class="form">
+            <div class="form-field">
+                <label for="message">Message</label>
+                <textarea class="input" id="message" name="messageText" rows="5" autofocus ></textarea>
+            </div>
+            <div class="form-actions">
+                <button class="btn" type="submit">Send</button>
+            </div>
+        </form>
+    </div>
 
+</div>

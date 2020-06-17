@@ -1,20 +1,32 @@
-<h2>This is the available page</h2>
-<p>Please tell us what books you have to offer other users.</p>
+<div id="available-page">
 
-<div class="form-header">
-    <h3 id="availableHeading">Add to your list</h3>
+    <h2>The books you currently have available:</h2>  
+    <div>    
+        {{#each books}}
+            {{#if title}} 
+                <p>{{title}} by: {{author}}</p>                
+            {{/if}}
+            {{else}}
+                <p>You don't have any books available to lend to others.</p>
+        {{/each}}
+    </div>
+ 
+    <div class="form-header">
+        <h3 id="availableHeading">Add to your list</h3>
+    </div>
+    <div id="addAvailable" style="visibility: hidden; height: 0;">
+        <form name="addAvailable" action="/account/addAvailable" method="POST" class="form" enctype="application/x-www-form-urlencoded" >
+            <input type="text" class="input" id="txtAvailableTitle" name="txtAvailableTitle" placeholder="Title" required />
+            <input type="text" class="input" id="txtAvailableAuthor" name="txtAvailableAuthor" placeholder="Author" required />
+            <input type="text" class="input" id="txtYearPub" name="txtYearPub" placeholder="Year published" required />
+            <input type="text" class="input" id="txtPages" name="txtPages" placeholder="Number of pages" required />
+            <label for="checkAvailable">Is available </label>
+            <input type="checkbox" class="input" id="checkAvailable" name="checkAvailable" />
+            <button class="btn" type="submit">Add this book</button>
+        </form>
+    </div>
 </div>
-<div id="addAvailable" style="visibility: hidden; height: 0;">
-    <form name="addAvailable" action="/account/addAvailable" method="POST" class="form" enctype="application/x-www-form-urlencoded" >
-        <input type="text" class="input" id="txtAvailableTitle" name="txtAvailableTitle" placeholder="Title" required />
-        <input type="text" class="input" id="txtAvailableAuthor" name="txtAvailableAuthor" placeholder="Author" required />
-        <input type="text" class="input" id="txtYearPub" name="txtYearPub" placeholder="Year published" required />
-        <input type="text" class="input" id="txtPages" name="txtPages" placeholder="Number of pages" required />
-        <label for="checkAvailable">Is available </label>
-        <input type="checkbox" class="input" id="checkAvailable" name="checkAvailable" />
-        <button class="btn" type="submit">Add this book</button>
-    </form>
-</div>
+
 <script>
   let availableHeading = document.getElementById("availableHeading");
   availableHeading.addEventListener("click", showAddAvailable);
@@ -31,15 +43,3 @@
   }
 }
 </script>
-
-
-
-<p>The books you currently have available:</p>   
-{{#each books}}
-    <div>
-        <p>{{title}} by: {{author}}</p>    
-    </div>
-{{/each}} 
-<br/>
-<p></p>
-

@@ -4,6 +4,14 @@ const User = require("../Model/UserModel");
 const Book = require("../Model/BookModel");
 const crypto = require("crypto");
 
+/* This is called when forms are submitted and the specific routes
+are called.  Because we have saved the userId from each time a page
+is loaded, we have access to it here as req.user.user.
+
+The return res.redirect("/available"); reloads the page we're on
+so that the new information can be displayed
+ */
+
 router.post("/addUser", async (req, res, next) => {
   if (req.user !== undefined) {
     console.log(req.body.txtAddUsername);
@@ -19,18 +27,9 @@ router.post("/addUser", async (req, res, next) => {
     conn.end();
 
     if (row.affectedRows === 1) {
-      // hash of pwd hash
       const chash = crypto.createHash("sha1").update(hash).digest("base64");
-      // store the cookie hash
       let cookieHash = await User.setCookieHash(user, chash);
-
-      //console.log(row); // show the sql result data structure
-      // eg. row = { affectedRows: 1, insertId: 18, warningStatus: 0 }
-
-      // attach user info to the request object so we can use it later
       req.user = { auth: true, user: { userId: row.insertId, username: user } };
-
-      // set cookies so user is "logged in" / remembered
       res.cookie("user", user, {
         maxAge: 1000 * 60 * 60 * 12,
       });
@@ -88,7 +87,6 @@ router.post("/addAvailable", async (req, res, next) => {
   if (req.user !== undefined) {
     let title = req.body.txtAvailableTitle.trim();
     let author = req.body.txtAvailableAuthor.trim();
-    //let genre = req.body.genreList;
     let yearPub = req.body.txtYearPub.trim();
     let pages = req.body.txtPages.trim();
     let available = req.body.checkAvailable;
@@ -133,6 +131,22 @@ router.get("/getPostalCode", async (req, res, next) => {
     conn.end();
 
     res.json(code);
+  } else {
+    next();
+  }
+});
+
+router.post("/sendMessage", async (req, res, next) => {
+  if (req.user !== undefined) {
+    let messageText = req.body.messageText.trim();
+    let userId = req.user.user.userId;
+    let conn = await db.getConnection();
+    const row = await conn.query(
+      "INSERT INTO message (messageText, userId) VALUES (?, ?);",
+      [messageText, userId]
+    );
+    conn.end();
+    return res.redirect("/message");
   } else {
     next();
   }

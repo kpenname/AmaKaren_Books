@@ -1,0 +1,116 @@
+html {
+  background-color: rgb(69, 39, 28);
+}
+body {
+  position: relative;
+  margin: -10px -10px 0 15vw;
+  padding: 2vw;
+  background-color: rgb(249, 235, 210);
+  color: rgb(69, 39, 28);
+  height: 96vh;
+}
+.section {
+  position: relative;
+  padding: 2vw;
+  display: flex;
+}
+
+/* start of header section */
+
+#outer-header {
+  flex-direction: row;
+  width: 100%;
+}
+#inner-header1 {
+  position: relative;
+  float: left;
+}
+#inner1 h1 {
+  font-size: xx-large;
+}
+#logo {
+  width: 16vw;
+  padding-left: 12px;
+  margin: 12px;
+}
+#inner-header2 {
+  display: flex;
+  flex-direction: column;
+}
+#inner1 {
+  align-self: center;
+}
+#inner2 {
+  display: flex;
+  flex-direction: column;
+}
+#inner2-inner {
+  display: flex;
+  flex-direction: row;
+}
+#account {
+  text-align: center;
+}
+.account {
+  text-align: center;
+}
+.account .input {
+  width: 80%;
+  margin-bottom: 5px;
+  padding: 10px;
+  border: 1px solid rgb(69, 39, 28);
+  border-radius: 3px;
+  box-shadow: 1px 1px 3px rgb(62, 95, 126);
+  text-align: center;
+}
+.account .btn {
+  width: 150px;
+  padding: 5px;
+  background-color: rgb(62, 95, 126);
+  cursor: pointer;
+  font-weight: bold;
+  color: rgb(249, 235, 210);
+}
+
+/* end of header section */
+
+#aside {
+  float: left;
+  flex-direction: column;
+}
+a {
+  text-decoration: none;
+  font-size: 14pt;
+  color: rgb(69, 39, 28);
+  font-weight: bold;
+}
+ul {
+  list-style: none;
+}
+li {
+  padding-bottom: 8px;
+}
+#pageContainer {
+  padding: 2vw;
+  border: 1px solid rgb(229, 143, 182);
+  box-shadow: 2px 2px 5px rgb(229, 143, 182);
+  border-radius: 4px;
+}
+
+#footer {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  border: 1px solid rgb(62, 95, 126);
+  box-shadow: 2px 2px 5px rgb(62, 95, 126);
+  border-radius: 4px;
+}
+
+/* STYLING FOR INDIVIDUAL PAGES */
+
+/* HOME */
+
+#home-page p {
+  text-shadow: 1px 1px 1px rgb(69, 39, 28);
+  font-size: 15pt;
+}

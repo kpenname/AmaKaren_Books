@@ -1,3 +1,6 @@
+/** this script is not currently in use,
+ * however, we may use it in the future */
+
 var nodemailer = require("nodemailer");
 
 var transporter = nodemailer.createTransport({

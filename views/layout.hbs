@@ -1,7 +1,3 @@
-<!-- please note that HBS files are not tracked by nodemon npm start
-So if you make a change here, it will not show up on the browser page until
-you save a .js file because those are tracked -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,22 +6,22 @@ you save a .js file because those are tracked -->
     <title>AmaKaren Books | {{page.title}}</title>
     <script src="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js">{{!}}</script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">{{!}}</script>
-    <script src="/resourses/js/main.js" type="application/javascript">{{!}}</script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css" rel="stylesheet"/>
-    <link href="/resourses/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="/resourses/css/newStyle.css" rel="stylesheet" type="text/css"/>
+    <link rel="shortcut icon" type="image/ico" href="resourses/img/favicon.ico"/>
 </head>
- <body>    
-    {{> header}}
-    <div id="flexbox">
-        <div id="aside">           
-            {{> menu}}           
-        </div>
-        <div id="main-page">
-            {{{body}}}
-            <div id="partial-page"></div>
-            </div>
-        </div>
-    </div>    
-  {{> footer}}
+ <body>
+    <header class="section" id="header">
+        {{> header}}
+    </header>    
+    <nav class="section" id="aside">
+        {{> menu}}       
+    </nav>
+    <main class="section" id="pageContainer">
+        {{{body}}}
+    </main>
+    <footer class="section" id="footer">
+        {{> footer}}
+    </footer>
 </body>
 </html>  

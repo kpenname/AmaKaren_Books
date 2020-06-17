@@ -1,9 +1,89 @@
-<header>
-     <img id="logo" src="/resourses/img/Amakaren_logo_colors.jpg" />
-     {{#if user.auth}}
-        <h3>Welcome back, {{user.user.userName}}</h3>     
-     {{else}}
-          <h3>Welcome to AmaKaren Books</h3>
-     {{/if}}
-</header>
-     
+<div id="outer-header">    
+
+    <div id="inner-header1">
+        <img id="logo" src="/resourses/img/Amakaren_logo_colors.jpg" />
+    </div>
+    <div id="inner-header2">
+
+        <div id="inner1">
+            {{#if user.auth}}
+                <h1>Welcome back, {{user.user.userName}}</h1>     
+            {{else}}
+                <h1>Welcome to AmaKaren Books</h1>
+            {{/if}}
+        </div>
+
+        <div id="inner2">
+            {{#if user.auth}}
+                <div id="account">
+                    <h3><a href="/?logout=1">Log Out</a></h3> 
+                </div> 
+            {{else}}
+            <div id="inner2-inner">
+                <div class="account">
+                    <h3 id="logIn">Log in to your account</h3>
+                <div id="loginForm" style="visibility: hidden; height: 0;" >
+
+                    <form action="{{page.pageKey}}" method="POST" class="form" enctype="application/x-www-form-urlencoded">
+                        <input class="input" type="text" name="username" id="username" placeholder="Username" required />
+                        <input class="input" type="password" name="password" id="password" placeholder="Password" required />
+                        <button id="btnLogin" class="btn" type="submit">Log in</button>
+                    </form>
+                </div>
+                </div>    
+                
+
+                <div class="account">
+                    <h3 id="createHeading">Create an Account</h3>
+                <div id="createForm" style="visibility: hidden; height: 0;">
+                    <form action="/account/addUser" method="POST" class="form" enctype="application/x-www-form-urlencoded">
+                        <input type="text" class="input" id="txtAddUsername" name="txtAddUsername" placeholder="Username" required />
+                        <input type="password" class="input" id="txtAddPassword" name="txtAddPassword" placeholder="Password" required />
+                        <button id="createAccount" class="btn" type="submit">Join</button>
+                    </form>
+                </div>
+                </div>
+                
+            </div>
+            
+            {{/if}}
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+  let logIn = document.getElementById("logIn");
+  logIn.addEventListener("click", showLoginForm);
+  logIn.style.cursor = "pointer";
+
+  let createHeading = document.getElementById("createHeading");
+  createHeading.addEventListener("click", showCreateAccount);
+  createHeading.style.cursor = "pointer";
+
+function showLoginForm() {
+  let loginForm = document.getElementById("loginForm");
+  if (loginForm.style.visibility === "hidden") {
+    loginForm.style.visibility = "visible";
+    loginForm.style.height = "100%";
+  } else {
+    loginForm.style.visibility = "hidden";
+    loginForm.style.height = "0";
+  }
+}
+
+function showCreateAccount() {
+  let createForm = document.getElementById("createForm");
+  if (createForm.style.visibility === "hidden") {
+    createForm.style.visibility = "visible";
+    createForm.style.height = "100%";
+  } else {
+    createForm.style.visibility = "hidden";
+    createForm.style.height = "0";
+  }
+}
+</script>
+

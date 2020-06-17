@@ -1,12 +1,7 @@
-<nav id="aside">
-
-{{> login}}
-
-{{#if user.auth}} 
-    <ul id="nav-menu">
-        {{#each menu}}
-           <li><a href="/{{ pageKey }}">{{ title }}</a></li>            
-        {{/each}}
-    </ul>
-{{/if}}   
-</nav>
+{{#if user.auth}}
+<ul>
+    {{#each menu}}
+        <li><a href="/{{ pageKey }}">{{ title }}</a></li>            
+    {{/each}}
+</ul>
+{{/if}}

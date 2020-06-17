@@ -11,18 +11,15 @@ module.exports = {
     conn.end();
     return true;
   },
-  // authenticate user with a cookie hash
+
   getAuthorizedWithHash: async function (user, hash) {
     let conn = await db.getConnection();
-    // run prepared query finding matching user
     const row = await conn.query("SELECT * FROM `users` WHERE userName = ?", [
       user,
     ]);
     conn.end();
 
-    // check if there are matching users
     if (row[0] !== undefined) {
-      // check if hash matches
       if (row[0].cookieHash === hash) {
         return { auth: true, user: row[0] };
       }
@@ -39,7 +36,6 @@ module.exports = {
 
     if (row[0] !== undefined) {
       if (hash === row[0].passHash) {
-        // if the user is authenticated
         const chash = crypto.createHash("sha1").update(hash).digest("base64");
         this.setCookieHash(user, chash);
 
@@ -81,15 +77,5 @@ module.exports = {
       return { userId: rows.insertId };
     }
     return { userId: null };
-  },
-
-  getAllUserInfo: async function () {
-    let connection = await db.getConnection();
-    let users = [];
-    const rows = await connection.query("SELECT * FROM users;");
-    if (rows.affectedRows > 0) {
-      return users;
-    }
-    return;
   },
 };

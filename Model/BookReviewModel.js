@@ -1,16 +1,19 @@
 const db = require("../config/database");
 
-module.exports = class {
-  static async getReview(bookId) {
-    let connection = await db.getConnection();
-    const rows = await connection.query(
-      "SELECT * FROM `bookReview` WHERE `bookId` = ? ",
-      [bookId]
+module.exports = {
+  getReviews: async function (userId) {
+    let conn = await db.getConnection();
+    const rows = await conn.query(
+      "SELECT reviewText, recommended, rating, title, author FROM bookreview JOIN books ON books.bookId = bookreview.bookId WHERE bookreview.userId =  ?",
+      [userId]
     );
-    if (rows.length > 0) {
-      return { review: rows[0] };
-    }
+    conn.end();
 
-    return { review: null };
-  }
+    let reviews = [];
+    for (let i = 0; i < rows.length; i++) {
+      reviews.push(rows[i]);
+    }
+    console.log(reviews);
+    return reviews;
+  },
 };

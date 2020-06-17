@@ -7,6 +7,13 @@ module.exports = async (req, res, next) => {
     res.clearCookie("chash");
     res.user = { auth: false };
     res.redirect("/home");
+    /** this redirect was added because I didn't want the url
+     * to be /?logout=1 which is what is set as the action when
+     * the user clicks logout on the login.hbs partial
+     * However, it currently throws an error in the console
+     * "Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client"
+     * I don't know how to rectify this.  Maybe someday...
+     * */
   } else {
     if (req.body.username !== undefined && req.body.password !== undefined) {
       let user = req.body.username.trim().toLowerCase();
