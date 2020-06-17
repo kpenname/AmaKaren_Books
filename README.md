@@ -27,23 +27,34 @@ June 18, 2020 - Final Report:
    h. The messagge page allows visitors to send us a message that will be stored in the database.
 
    i. The header contains a logout link that brings the visitor back to the home page once the cookies are deleted.
+   
 
 2. Features Implemented
 
    a. user login with cookies
+   
    b. a database that stores users, books available to lend, books in a user's wishlist, user's book reviews, and messages.  
+   
    c. a map that shows the user's location
+   
    d. a UI that is easy to navigate and understand
+   
 
 3. Unfinished Features
 
    a. email messaging
+   
    b. the wishlist page does not show locations of the books in the wishlist
+   
    c. the wishlist, available, and reviews pages do not allow users to alter or delete their previous entries
+   
 
 4. Features for the Future
 
    a. users should be able to see if another user has a book on their wishlist, is that book available, and where are they on the map
+   
    b. users could have public profiles that other members can search. The profile could include their available books and what's on their wishlist.
+   
    c. a book search to allow user's to look up all published books, for title, author, date published, etc.
+   
    d. a search within the site for available books matching certain criteria
