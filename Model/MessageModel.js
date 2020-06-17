@@ -13,7 +13,6 @@ module.exports = {
       for (let i = 0; i < rows.length; i++) {
         messages.push(rows[i]);
       }
-      console.log(messages);
       return messages;
     } else {
       return null;

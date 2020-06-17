@@ -61,8 +61,35 @@ router.post("/update", async (req, res, next) => {
       [first, last, address, city, province, postal, email, phone, userId]
     );
     conn.end();
-    console.log(req.user.user);
-    return res.redirect("/home");
+    return res.redirect("/account");
+  } else {
+    next();
+  }
+});
+
+router.post("/addReview", async (req, res, next) => {
+  if (req.user !== undefined) {
+    let title = req.body.txtReviewTitle.trim();
+    let author = req.body.txtReviewAuthor.trim();
+    let reviewText = req.body.txtReviewText.trim();
+    let ratingText = req.body.txtReviewRating.trim();
+    let rating = parseInt(ratingText);
+    if (rating <= 0) {
+      rating === "1";
+    } else if (rating > 5) {
+      rating === "5";
+    }
+    let rateText = rating.toString();
+    let recommend = req.body.txtReviewCheck;
+
+    let userId = req.user.user.userId;
+    let conn = await db.getConnection();
+    const row = await conn.query(
+      "INSERT INTO bookreview (userId, title, author, reviewText, rating, recommended) VALUES (?, ?, ?, ?, ?, ?);",
+      [userId, title, author, reviewText, rateText, recommend]
+    );
+    conn.end();
+    return res.redirect("/review");
   } else {
     next();
   }

@@ -14,38 +14,27 @@
     <div class="form-header">
         <h3 id="wishlistHeading">Add to your wishlist</h3>
     </div>
-    <div id="addWishlist" style="visibility: hidden; height: 0;">
-        <form name="addWishlist" action="/account/addWishlist" method="POST" class="form" enctype="application/x-www-form-urlencoded" id="addWishlist">
+    <div id="addWishlist">
+        <form name="addWishlist" action="/account/addWishlist" method="POST" id="wishlist-form" enctype="application/x-www-form-urlencoded" id="addWishlist">
             <input type="text" class="input" id="txtWishlistTitle" name="txtWishlistTitle" placeholder="Title" required />
             <input type="text" class="input" id="txtWishlistAuthor" name="txtWishlistAuthor" placeholder="Author" required />       
             
             <button class="btn" type="submit">Add this book</button>
         </form>
     </div>
-
-    <div id="map"></div>
+    <p id="showMapHeader">Show locations on the map</p>
+ <div id="map"></div>
+   
 </div>
-
 
 <script>
 mapboxgl.accessToken =
   "pk.eyJ1IjoicGVubmFtZSIsImEiOiJja2EyaW5taXUwMmFyM2VvNmNuempvMThlIn0.0DFa51G5_9CQxGn1okW6hA";
 let map;
 
-    let wishlistHeading = document.getElementById("wishlistHeading");
-    wishlistHeading.addEventListener("click", showAddWishlist);
-    wishlistHeading.style.cursor = "pointer";
-
-    function showAddWishlist() {
-        let addWishlist = document.getElementById("addWishlist");
-        if (addWishlist.style.visibility === "hidden") {
-            addWishlist.style.visibility = "visible";
-            addWishlist.style.height = "100%";
-        } else {
-            addWishlist.style.visibility = "hidden";
-            addWishlist.style.height = "0";
-        }
-    }
+    let showMapHeader = document.getElementById("showMapHeader");
+    showMapHeader.addEventListener("click", useCoordinates);
+    showMapHeader.style.cursor = "pointer";
  
 function displayMap() {  
   map = new mapboxgl.Map({
@@ -59,8 +48,6 @@ function displayMap() {
     map.resize();
   });  
 }
-
-useCoordinates();
 
 async function getPostalCode () {   
     let res = await fetch("/account/getPostalCode");

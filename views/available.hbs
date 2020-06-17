@@ -14,32 +14,15 @@
     <div class="form-header">
         <h3 id="availableHeading">Add to your list</h3>
     </div>
-    <div id="addAvailable" style="visibility: hidden; height: 0;">
-        <form name="addAvailable" action="/account/addAvailable" method="POST" class="form" enctype="application/x-www-form-urlencoded" >
+    <div id="addAvailable">
+        <form name="addAvailable" action="/account/addAvailable" method="POST" id="available-form" enctype="application/x-www-form-urlencoded" >
             <input type="text" class="input" id="txtAvailableTitle" name="txtAvailableTitle" placeholder="Title" required />
             <input type="text" class="input" id="txtAvailableAuthor" name="txtAvailableAuthor" placeholder="Author" required />
             <input type="text" class="input" id="txtYearPub" name="txtYearPub" placeholder="Year published" required />
             <input type="text" class="input" id="txtPages" name="txtPages" placeholder="Number of pages" required />
-            <label for="checkAvailable">Is available </label>
-            <input type="checkbox" class="input" id="checkAvailable" name="checkAvailable" />
+            <div id="isAvailable"><label for="checkAvailable">Is available </label>
+            <input type="checkbox" class="check" id="checkAvailable" name="checkAvailable" /></div>
             <button class="btn" type="submit">Add this book</button>
         </form>
     </div>
 </div>
-
-<script>
-  let availableHeading = document.getElementById("availableHeading");
-  availableHeading.addEventListener("click", showAddAvailable);
-  availableHeading.style.cursor = "pointer";
-
-  function showAddAvailable() {
-  let addAvailable = document.getElementById("addAvailable");
-  if (addAvailable.style.visibility === "hidden") {
-    addAvailable.style.visibility = "visible";
-    addAvailable.style.height = "100%";
-  } else {
-    addAvailable.style.visibility = "hidden";
-    addAvailable.style.height = "0";
-  }
-}
-</script>
