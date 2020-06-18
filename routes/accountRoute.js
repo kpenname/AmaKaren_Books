@@ -74,16 +74,18 @@ router.post("/addReview", async (req, res, next) => {
     let reviewText = req.body.txtReviewText.trim();
     let ratingText = req.body.txtReviewRating.trim();
     let rating = parseInt(ratingText);
+
     if (rating <= 0) {
       rating = "1";
     } else if (rating > 5) {
       rating = "5";
     }
-    console.log(rating);
+
     let rateText = rating.toString();
+
     let recommend = req.body.txtReviewCheck;
     if (recommend === undefined) {
-      recommend = "off";
+      recommend = "";
     }
 
     let userId = req.user.user.userId;
@@ -120,12 +122,17 @@ router.post("/addAvailable", async (req, res, next) => {
     let author = req.body.txtAvailableAuthor.trim();
     let yearPub = req.body.txtYearPub.trim();
     let pages = req.body.txtPages.trim();
-    let available = req.body.checkAvailable;
+    let isAvailable = req.body.checkAvailable;
+
+    if (isAvailable === undefined) {
+      isAvailable = "off";
+    }
+
     let userId = req.user.user.userId;
     let conn = await db.getConnection();
     const row = await conn.query(
       "INSERT INTO books (userId, title, author, yearPub, pages, available) VALUES (?, ?, ?, ?, ?, ?);",
-      [userId, title, author, yearPub, pages, available]
+      [userId, title, author, yearPub, pages, isAvailable]
     );
     conn.end();
     return res.redirect("/available");
