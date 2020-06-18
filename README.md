@@ -24,7 +24,7 @@ June 18, 2020 - Final Report:
 
    g. The review page lists the reviews the visitor has given and includes a form for them to write more reviews. They can give the book a rating of 1-5, any number outside these bounds is changed to match the requirements of the database. For example, they enter 100, it will be stored as 5
 
-   h. The messagge page allows visitors to send us a message that will be stored in the database.
+   h. The message page allows visitors to send us a message that will be stored in the database.
 
    i. The header contains a logout link that brings the visitor back to the home page once the cookies are deleted.
    
