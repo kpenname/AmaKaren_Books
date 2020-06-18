@@ -25,14 +25,14 @@ CREATE TABLE IF NOT EXISTS `bookreview` (
   `title` varchar(50) DEFAULT '',
   `author` varchar(50) DEFAULT NULL,
   `reviewText` mediumtext DEFAULT NULL,
-  `recommended` enum('true','false') DEFAULT NULL,
+  `recommended` enum('true','') DEFAULT NULL,
   `rating` set('1','2','3','4','5') DEFAULT NULL,
   PRIMARY KEY (`bookReviewId`),
   KEY `userId` (`userId`),
   CONSTRAINT `userId` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table amakaren_books.bookreview: ~3 rows (approximately)
+-- Dumping data for table amakaren_books.bookreview: ~15 rows (approximately)
 DELETE FROM `bookreview`;
 /*!40000 ALTER TABLE `bookreview` DISABLE KEYS */;
 INSERT INTO `bookreview` (`bookReviewId`, `userId`, `title`, `author`, `reviewText`, `recommended`, `rating`) VALUES
@@ -40,7 +40,17 @@ INSERT INTO `bookreview` (`bookReviewId`, `userId`, `title`, `author`, `reviewTe
 	(10, 9, 'Gone with the Wind', 'Margaret Mitchell ', 'Gone with the Wind is a brilliant book that challenges the sexism and racism of its day.', 'true', '4'),
 	(12, 8, 'The Giving Tree', 'Shel Silverstein', 'The Giving Tree by Shel Silverstein is a fictional poetic picture book. It is about a symbolist relationship between a loving tree that gives and gives to a selfish little boy.', 'true', '5'),
 	(13, 9, 'The Book Thief', 'Markus Zusak', 'The Book Thief is the kind of novel that continues to stay with you long after you have finished reading.', 'true', '4'),
-	(14, 8, 'Ender\'s Game', 'Orson Scott Card', 'In the future, humanity, having begun to explore the universe and master interplanetary spaceflight, encounters an alien race called the Formics, commonly referred to in the series as the "buggers". The discovery of a bugger base in the asteroid Eros leads to war between the species that the humans narrowly win, resulting in the discovery of advanced alien technology, including gravity manipulation. Ostensibly in preparation for another bugger invasion, an International Fleet (I.F.) is established on Earth, which creates a Battle School in Earth\'s orbit to develop gifted children into commanders capable of defeating the buggers in the next war.', 'true', '5');
+	(14, 8, 'Ender\'s Game', 'Orson Scott Card', 'In the future, humanity, having begun to explore the universe and master interplanetary spaceflight, encounters an alien race called the Formics, commonly referred to in the series as the "buggers". The discovery of a bugger base in the asteroid Eros leads to war between the species that the humans narrowly win, resulting in the discovery of advanced alien technology, including gravity manipulation. Ostensibly in preparation for another bugger invasion, an International Fleet (I.F.) is established on Earth, which creates a Battle School in Earth\'s orbit to develop gifted children into commanders capable of defeating the buggers in the next war.', 'true', '5'),
+	(15, 10, 'Lord of the Flies', 'William Golding', 'This is an awful book.  Just terrible how these kids acted.  Don\'t they have parents?!', '', '1'),
+	(16, 9, 'Hideaway', 'Nora Roberts', 'This is a great, fast read.  Tremendous!', 'true', '5'),
+	(17, 9, 'Happy Go Lucky', 'Sarah Silver', 'This book kept me laughing!!', 'true', '5'),
+	(18, 8, 'Title', 'Author', 'Review', '', '1'),
+	(19, 8, 'Title', 'Author', 'There is no review', '', '1'),
+	(20, 8, 'The Title', 'Author Name', 'The review goes here', '', '1'),
+	(21, 8, 'New Book', 'The Author', 'A review is fine thing...', 'true', '1'),
+	(22, 8, 'New', 'Old', 'Young', '', '5'),
+	(23, 8, 'one', 'two', 'three', '', '4'),
+	(24, 8, 'Trial and Error', 'Karen Fahey', 'I\'m hoping that this solves the true, false, recommend, don\'t recommend problem.', '', '5');
 /*!40000 ALTER TABLE `bookreview` ENABLE KEYS */;
 
 -- Dumping structure for table amakaren_books.books
@@ -57,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `books` (
   PRIMARY KEY (`bookId`),
   KEY `userid4` (`userId`),
   CONSTRAINT `userid4` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table amakaren_books.books: ~30 rows (approximately)
 DELETE FROM `books`;
@@ -92,7 +102,9 @@ INSERT INTO `books` (`bookId`, `userId`, `title`, `author`, `genre`, `yearPub`, 
 	(32, 8, 'The Vanishing Half', 'Brit Bennett', NULL, 2020, 548, 'on'),
 	(33, 3, 'Camino Winds', 'John Grisham', NULL, 2019, 725, 'on'),
 	(34, 15, 'The Lost World', 'Michael Crichton', NULL, 1986, 562, 'on'),
-	(35, 36, 'As Time Goes By', 'Mary Higgins Clark', NULL, 2017, 267, 'on');
+	(35, 36, 'As Time Goes By', 'Mary Higgins Clark', NULL, 2017, 267, 'on'),
+	(36, 9, 'Hideaway', 'Nora Roberts', NULL, 2015, 369, 'on'),
+	(37, 9, 'The Abyss', 'Orson Scott Card', NULL, 1989, 425, 'off');
 /*!40000 ALTER TABLE `books` ENABLE KEYS */;
 
 -- Dumping structure for table amakaren_books.message
@@ -103,9 +115,9 @@ CREATE TABLE IF NOT EXISTS `message` (
   `messageText` varchar(255) DEFAULT NULL,
   `dateSent` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`messageId`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table amakaren_books.message: ~6 rows (approximately)
+-- Dumping data for table amakaren_books.message: ~7 rows (approximately)
 DELETE FROM `message`;
 /*!40000 ALTER TABLE `message` DISABLE KEYS */;
 INSERT INTO `message` (`messageId`, `userId`, `messageText`, `dateSent`) VALUES
@@ -114,7 +126,8 @@ INSERT INTO `message` (`messageId`, `userId`, `messageText`, `dateSent`) VALUES
 	(9, 8, 'I think this is really great!', '2020-06-17 08:08:38'),
 	(10, 8, 'Is this thing working yet, and still I wonder...', '2020-06-17 08:43:06'),
 	(11, 8, 'I have such a great time with your website.  I love reading.  Can\'t wait to get some more books.', '2020-06-17 15:40:43'),
-	(12, 12, 'Whatever has become of us?  All we want to do now is read. The rel world is a scary place.  So we just stay at home with our books.  So satisfying.', '2020-06-17 15:52:10');
+	(12, 12, 'Whatever has become of us?  All we want to do now is read. The rel world is a scary place.  So we just stay at home with our books.  So satisfying.', '2020-06-17 15:52:10'),
+	(13, 8, 'We love this website!', '2020-06-17 20:06:15');
 /*!40000 ALTER TABLE `message` ENABLE KEYS */;
 
 -- Dumping structure for table amakaren_books.pages
@@ -161,7 +174,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `userName` (`userName`)
 ) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table amakaren_books.users: ~17 rows (approximately)
+-- Dumping data for table amakaren_books.users: ~19 rows (approximately)
 DELETE FROM `users`;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`userId`, `firstName`, `lastName`, `userName`, `passWord`, `email`, `phone`, `address`, `City`, `province`, `postCode`, `passHash`, `cookieHash`) VALUES
@@ -171,9 +184,9 @@ INSERT INTO `users` (`userId`, `firstName`, `lastName`, `userName`, `passWord`, 
 	(5, 'Adele', 'Rogers', 'arogers', '1234', 'a.rogers@randatmail.com', '2355', '63 Rue Lemieux', 'Gatineau', 'QC', 'J8Z1G7', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
 	(6, 'Derek', 'Gray', 'dgray', '1234', 'd.gray@randatmail.com', '2147483647', '76 Rue Pelletier', 'Gatineau', 'QC', 'J8Y 5Y3', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
 	(7, 'Eric', 'Morgan', 'emorgan', '1234', 'e.morgan@randatmail.com', '3554', '369 Boulevard Riel', 'Gatineau', 'QC', 'J8Z1B3', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
-	(8, 'Annabella', 'Henderson', 'ahenderson', '1234', 'a.henderson@randatmail.com', '8197450326', '320 Rue Francois de Levis', 'Gatineau', 'QC', 'J8Z1A4', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
+	(8, 'Annabella', 'Henderson', 'ahenderson', '1234', 'a.henderson@randatmail.com', '819-645-0326', '320 Rue Francois de Levis', 'Gatineau', 'QC', 'J8Z1A4', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
 	(9, 'Catherine', 'Farrell', 'cfarrell', '1234', 'c.farrell@randatmail.com', '5465', '71 Rue d\'Orsonnens', 'Gatineau', 'QC', 'J8Y6H8', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
-	(10, 'Richard', 'Ellis', 'rellis', '1234', 'r.ellis@randatmail.com', '9874', '311 Rue Francois de Levis', 'Gatineau', 'QC', 'J8Z1A3', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
+	(10, 'Richard', 'Ellis', 'rellis', '1234', 'r.ellis@randatmail.com', '819-452-6578', '311 Rue Francois de Levis', 'Gatineau', 'QC', 'J8Z1A3', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
 	(11, 'Vanessa', 'Hunt', 'vhunt', '1234', 'v.hunt@randatmail.com', '6545', '4 Rue Alie', 'Gatineau', 'QC', 'J8Z1M9', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
 	(12, 'Michael', 'Nelson', 'mnelson', '1234', 'm.nelson@randatmail.com', '8497', '145 Rue Jolicoeur', 'Gatineau', 'QC', 'J8Z1C8', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
 	(13, 'Dale', 'Mason', 'dmason', '1234', 'd.mason@randatmail.com', '9954', '37 Rue Bernier', 'Gatineau', 'QC', 'J8Z1E7', 'cRDtpNCeBiql5KOQsKVyrA0sAiA=', 'rfvySFAZCJCK706SWtwrbqngY6s='),
@@ -194,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `wishlist` (
   PRIMARY KEY (`wishlistId`),
   KEY `wishlist_userId` (`userId`),
   CONSTRAINT `wishlist_userId` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table amakaren_books.wishlist: ~30 rows (approximately)
 DELETE FROM `wishlist`;
@@ -229,7 +242,8 @@ INSERT INTO `wishlist` (`wishlistId`, `userId`, `title`, `author`) VALUES
 	(27, 8, 'Hideaway', 'Nora Roberts'),
 	(28, 8, 'If it Bleeds', 'Stephen King'),
 	(29, 4, 'Sunshine', 'Theo Popular'),
-	(30, 15, 'The Lost World', 'Michael Crichton');
+	(30, 15, 'The Lost World', 'Michael Crichton'),
+	(31, 9, 'Jane Eyre', 'Charlotte Bronte');
 /*!40000 ALTER TABLE `wishlist` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
